@@ -163,6 +163,9 @@ footer{background:var(--dark);padding:40px 6%;display:flex;align-items:center;ju
 .rd1{transition-delay:0.1s}.rd2{transition-delay:0.2s}.rd3{transition-delay:0.3s}.rd4{transition-delay:0.4s}
 @media(max-width:960px){.hstats{display:none}.wgrid,.tgrid,.whogrid,.wygrid{grid-template-columns:1fr}.phases{flex-direction:column;gap:32px}.phases::before{display:none}.nav-links{display:none}}
 </style>
+
+
+
 </head>
 <body>
 <nav>
@@ -174,6 +177,7 @@ footer{background:var(--dark);padding:40px 6%;display:flex;align-items:center;ju
     <li><a href="#how">How It Works</a></li>
     <li><a href="#tiers">Services</a></li>
     <li><a href="#who">Who It's For</a></li>
+    <li><a href="#faq">FAQ</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Book a Call</a>
 </nav>
@@ -306,6 +310,16 @@ footer{background:var(--dark);padding:40px 6%;display:flex;align-items:center;ju
   </div>
 </section>
 
+<section class="faq" id="faq">
+  <div class="slabel"><span>FAQ</span></div>
+  <h2 class="stitle">Freqeuently Asked Questions on AI / Digital / System Transformation</h2>
+  <p class="ssub">Frequently asked questions in AI and digital transformation often revolve around practical concerns such as data security, workforce impact, and integration with existing systems. They also explore strategic topics like scalability, ethical use of AI, and how organizations can measure tangible business value from transformation initiatives..</p>
+  <div class="wgrid">
+    <div class="wcard reveal"><div class="wicon">1</div><h3>Why do most digital transformations fail?</h3><p>Most fail due to unclear blueprints, poor readiness assessment, and lack of structured process documentation. Our Enterprise Foundation Blueprint addresses these gaps.</p></div>
+    <div class="wcard reveal rd1"><div class="wicon">2</div><h3>What is AI readiness scoring?</h3><p>AI readiness scoring evaluates your IT landscape, data maturity, and process clarity to determine how prepared your enterprise is for AI-driven transformation.</p></div>
+    <div class="wcard reveal rd2"><div class="wicon">3</div><h3>How does gap analysis help transformation?</h3><p>Gap analysis identifies missing capabilities, risks, and misalignments in your enterprise processes, enabling a clear roadmap for successful transformation.</p></div>
+      </div>
+</section>
 
 <section class="ctasec" id="contact">
   <h2>Ready to transform — on solid ground?</h2>
@@ -333,5 +347,6 @@ footer{background:var(--dark);padding:40px 6%;display:flex;align-items:center;ju
 const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.12});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
+
 </body>
 </html>
