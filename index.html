@@ -490,17 +490,260 @@
   }
   @keyframes scan { from { top: -4px; } to { top: 100vh; } }
 
+  /* ── CHALLENGES SECTION ── */
+  .challenges-section {
+    margin-bottom: 64px;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .challenges-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .challenges-title-group { display: flex; flex-direction: column; gap: 8px; }
+
+  .challenges-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .challenges-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--white);
+  }
+  .challenges-title span { color: var(--emerald); }
+
+  .challenges-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--emerald);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  /* Central failure statement */
+  .failure-banner {
+    background: rgba(180,20,20,0.06);
+    border: 1px solid rgba(255,60,60,0.18);
+    border-left: 3px solid rgba(255,80,80,0.6);
+    padding: 20px 28px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .failure-banner-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    opacity: 0.8;
+  }
+  .failure-banner-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 400;
+    color: var(--off-white);
+    line-height: 1.6;
+  }
+  .failure-banner-text strong {
+    color: rgba(255,120,120,0.9);
+    font-weight: 600;
+  }
+
+  /* Challenge cards grid */
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .challenge-card {
+    background: rgba(10,5,5,0.6);
+    border: 1px solid rgba(255,60,60,0.12);
+    padding: 30px 26px 36px;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: background 0.3s, border-color 0.3s, transform 0.3s;
+  }
+  .challenge-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255,80,80,0.7), rgba(255,140,60,0.5));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .challenge-card:hover::before { transform: scaleX(1); }
+  .challenge-card:hover {
+    background: rgba(255,50,50,0.05);
+    border-color: rgba(255,80,80,0.28);
+    transform: translateY(-4px);
+  }
+
+  /* Severity indicator */
+  .challenge-severity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .severity-bar {
+    display: flex;
+    gap: 3px;
+  }
+  .severity-pip {
+    width: 18px; height: 4px;
+    background: rgba(255,80,80,0.2);
+    border-radius: 2px;
+  }
+  .severity-pip.active { background: rgba(255,80,80,0.75); }
+  .severity-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,100,100,0.7);
+  }
+
+  .challenge-icon-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .challenge-icon {
+    width: 44px; height: 44px;
+    border: 1px solid rgba(255,80,80,0.2);
+    background: rgba(255,50,50,0.06);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+  }
+  .challenge-num-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255,100,100,0.6);
+  }
+
+  .challenge-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.65rem;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+
+  .challenge-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,120,80,0.7);
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,60,60,0.12);
+  }
+
+  .challenge-desc {
+    font-size: 0.82rem;
+    color: var(--off-white);
+    line-height: 1.68;
+    font-weight: 300;
+    margin-bottom: 18px;
+  }
+
+  /* Impact bullets */
+  .challenge-impacts { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .challenge-impacts li {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: rgba(200,180,180,0.75);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+  }
+  .challenge-impacts li::before {
+    content: '↳';
+    color: rgba(255,100,80,0.6);
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 0.8rem;
+  }
+
+  .challenge-bg-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    color: rgba(255,60,60,0.04);
+    position: absolute;
+    bottom: -8px; right: 12px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* Bottom connector strip */
+  .challenges-footer-strip {
+    margin-top: 28px;
+    padding: 18px 24px;
+    background: rgba(0,232,122,0.03);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .strip-dot { width: 6px; height: 6px; background: var(--emerald); border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 8px var(--emerald); }
+  .strip-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--off-white);
+    line-height: 1.5;
+  }
+  .strip-text strong { color: var(--emerald); font-weight: 600; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     header { padding: 20px 24px; }
     .hero { padding: 40px 24px 30px; }
     .phases { grid-template-columns: repeat(2, 1fr); }
+    .challenge-grid { grid-template-columns: repeat(2, 1fr); }
     footer { padding: 18px 24px; flex-direction: column; gap: 10px; text-align: center; }
   }
 
   @media (max-width: 560px) {
     .header-badges { display: none; }
     .phases { grid-template-columns: 1fr; }
+    .challenge-grid { grid-template-columns: 1fr; }
     .website-url { border-left: none; padding-left: 0; }
   }
 </style>
@@ -593,6 +836,218 @@
 
       </div>
 
+      <!-- ══ CHALLENGES SECTION ══ -->
+      <div class="challenges-section">
+
+        <div class="challenges-header">
+          <div class="challenges-title-group">
+            <div class="challenges-eyebrow">Why Transformations Fail</div>
+            <div class="challenges-title">Top <span>Challenges</span><br>in IT / AI / Digital</div>
+          </div>
+          <div class="challenges-stat">
+            <div class="stat-num">70%</div>
+            <div class="stat-label">of digital transformation<br>initiatives fail to meet goals</div>
+          </div>
+        </div>
+
+        <div class="failure-banner">
+          <div class="failure-banner-icon">⚠</div>
+          <div class="failure-banner-text">
+            Most IT, AI and Digital implementation failures are <strong>not technology problems</strong> — they are <strong>knowledge, clarity and ownership gaps</strong> that surface long before a single line of code is written or a model is trained.
+          </div>
+        </div>
+
+        <div class="challenge-grid">
+
+          <!-- Card 1 -->
+          <div class="challenge-card">
+            <div class="challenge-severity">
+              <div class="severity-bar">
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+              </div>
+              <span class="severity-label">Critical</span>
+            </div>
+            <div class="challenge-icon-row">
+              <div class="challenge-icon">📋</div>
+              <span class="challenge-num-tag">Challenge — 01</span>
+            </div>
+            <div class="challenge-title">Undocumented Processes</div>
+            <div class="challenge-subtitle">The invisible workflow problem</div>
+            <div class="challenge-desc">
+              When business processes exist only in people's heads — never mapped, never written — digital systems are built on assumption rather than truth. AI models trained on incomplete process data produce unreliable outputs, and automation scripts break the moment an undocumented edge case appears.
+            </div>
+            <ul class="challenge-impacts">
+              <li>Systems replicate inefficiencies or informal workarounds, embedding them permanently</li>
+              <li>Scope creep explodes mid-project as hidden steps surface too late</li>
+              <li>AI/ML models inherit tribal knowledge gaps, causing silent errors in production</li>
+              <li>Change management fails — staff reject systems that don't reflect how work actually happens</li>
+            </ul>
+            <div class="challenge-bg-num">01</div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="challenge-card">
+            <div class="challenge-severity">
+              <div class="severity-bar">
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip"></div>
+              </div>
+              <span class="severity-label">High</span>
+            </div>
+            <div class="challenge-icon-row">
+              <div class="challenge-icon">🗄️</div>
+              <span class="challenge-num-tag">Challenge — 02</span>
+            </div>
+            <div class="challenge-title">Unclear Data Ownership</div>
+            <div class="challenge-subtitle">The accountability vacuum</div>
+            <div class="challenge-desc">
+              Without clear data stewardship, enterprises operate on siloed, contradictory datasets. AI initiatives collapse when models cannot be trusted because nobody knows which source is authoritative. Data governance becomes firefighting rather than strategy.
+            </div>
+            <ul class="challenge-impacts">
+              <li>Duplicate, inconsistent master data corrupts analytics and AI training sets</li>
+              <li>Integration projects stall — no single team has authority to resolve data conflicts</li>
+              <li>Compliance and audit failures emerge from untracked data lineage</li>
+              <li>Business decisions made on stale or siloed data, undermining transformation ROI</li>
+            </ul>
+            <div class="challenge-bg-num">02</div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="challenge-card">
+            <div class="challenge-severity">
+              <div class="severity-bar">
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip"></div>
+              </div>
+              <span class="severity-label">High</span>
+            </div>
+            <div class="challenge-icon-row">
+              <div class="challenge-icon">🎯</div>
+              <span class="challenge-num-tag">Challenge — 03</span>
+            </div>
+            <div class="challenge-title">Unclear Requirements</div>
+            <div class="challenge-subtitle">The moving-target syndrome</div>
+            <div class="challenge-desc">
+              Vague, incomplete or constantly shifting requirements are the single greatest predictor of project failure. When business stakeholders and IT teams speak different languages, the delivered system solves the wrong problem — on time and on budget.
+            </div>
+            <ul class="challenge-impacts">
+              <li>Rework costs multiply — late-stage requirement changes cost 100× more to fix than early ones</li>
+              <li>User acceptance testing reveals fundamental misalignment, forcing full redesigns</li>
+              <li>AI use-case definitions remain too abstract to translate into model objectives</li>
+              <li>Teams lose stakeholder trust and budget confidence, killing future initiatives</li>
+            </ul>
+            <div class="challenge-bg-num">03</div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="challenge-card">
+            <div class="challenge-severity">
+              <div class="severity-bar">
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip"></div>
+                <div class="severity-pip"></div>
+              </div>
+              <span class="severity-label">Significant</span>
+            </div>
+            <div class="challenge-icon-row">
+              <div class="challenge-icon">🔗</div>
+              <span class="challenge-num-tag">Challenge — 04</span>
+            </div>
+            <div class="challenge-title">Siloed Domain Knowledge</div>
+            <div class="challenge-subtitle">Expertise fragmentation</div>
+            <div class="challenge-desc">
+              Business domain knowledge, process understanding and IT capability rarely converge. When IT builds without domain depth, or business teams design without IT awareness, systems are technically sound but operationally unfit for purpose.
+            </div>
+            <ul class="challenge-impacts">
+              <li>Critical business rules omitted from system design — only discovered post-launch</li>
+              <li>Integration gaps between departments create manual workarounds and shadow IT</li>
+              <li>AI models optimise for wrong metrics because domain experts weren't consulted</li>
+            </ul>
+            <div class="challenge-bg-num">04</div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="challenge-card">
+            <div class="challenge-severity">
+              <div class="severity-bar">
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip"></div>
+                <div class="severity-pip"></div>
+              </div>
+              <span class="severity-label">Significant</span>
+            </div>
+            <div class="challenge-icon-row">
+              <div class="challenge-icon">⚙️</div>
+              <span class="challenge-num-tag">Challenge — 05</span>
+            </div>
+            <div class="challenge-title">No Value Stream Clarity</div>
+            <div class="challenge-subtitle">Automating broken processes</div>
+            <div class="challenge-desc">
+              Organisations rush to automate or digitise existing workflows without first eliminating waste. The result: expensive technology that accelerates the delivery of bad outcomes. Digital transformation amplifies problems rather than solving them.
+            </div>
+            <ul class="challenge-impacts">
+              <li>RPA and AI bots hard-coded to flawed processes create brittle, high-maintenance systems</li>
+              <li>Lean opportunities permanently lost once automation is embedded</li>
+              <li>Fast-failing digital products erode executive appetite for future investment</li>
+            </ul>
+            <div class="challenge-bg-num">05</div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="challenge-card">
+            <div class="challenge-severity">
+              <div class="severity-bar">
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip active"></div>
+                <div class="severity-pip"></div>
+                <div class="severity-pip"></div>
+              </div>
+              <span class="severity-label">Significant</span>
+            </div>
+            <div class="challenge-icon-row">
+              <div class="challenge-icon">🧭</div>
+              <span class="challenge-num-tag">Challenge — 06</span>
+            </div>
+            <div class="challenge-title">Misaligned IT & Business Strategy</div>
+            <div class="challenge-subtitle">Investing in the wrong direction</div>
+            <div class="challenge-desc">
+              When IT roadmaps are built in isolation from business strategy, organisations invest in the wrong platforms, the wrong capabilities, and the wrong sequence of priorities — discovering the mismatch only after significant spend.
+            </div>
+            <ul class="challenge-impacts">
+              <li>Technology selected for vendor familiarity rather than strategic fit</li>
+              <li>High-value digital initiatives deprioritised in favour of visible but low-impact projects</li>
+              <li>Transformation programme restarts drain resources and damage credibility</li>
+            </ul>
+            <div class="challenge-bg-num">06</div>
+          </div>
+
+        </div>
+
+        <div class="challenges-footer-strip">
+          <div class="strip-dot"></div>
+          <div class="strip-text">
+            <strong>EnterpriseIQ addresses every one of these failure points</strong> — systematically, through our four-phase Organise → Optimise → Strategise → Modernise framework, ensuring your transformation is built on documented reality, not assumption.
+          </div>
+        </div>
+
+      </div>
+      <!-- ══ END CHALLENGES ══ -->
+
       <div class="section-divider"></div>
 
       <!-- COMING SOON -->
@@ -652,12 +1107,4 @@
     <div class="footer-copy">&copy; 2025 EnterpriseIQ · All rights reserved</div>
     <div class="footer-tags">
       <span class="footer-tag">AI Strategy</span>
-      <span class="footer-tag">Process Excellence</span>
-      <span class="footer-tag">Digital Transformation</span>
-    </div>
-  </footer>
-
-</div>
-
-</body>
-</html>
+      <span class="footer-tag
