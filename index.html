@@ -3,1109 +3,1012 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EnterpriseIQ — Coming Soon</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>EnterpriseIQ — Blueprints for Digital Readiness</title>
+<meta name="description" content="EnterpriseIQ — Blueprints for Digital Readiness. Foundation for AI Success.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #050e0a;
-    --bg2: #071410;
-    --emerald: #00e87a;
-    --emerald-dim: #00c464;
-    --emerald-dark: #003d22;
-    --emerald-glow: rgba(0,232,122,0.15);
-    --emerald-glow2: rgba(0,232,122,0.05);
-    --white: #ffffff;
-    --off-white: #ccddd5;
-    --muted: #5a8070;
-    --border: rgba(0,232,122,0.2);
-    --border-strong: rgba(0,232,122,0.5);
-  }
+/* ═══════════════════════════
+   DESIGN TOKENS
+═══════════════════════════ */
+:root{
+  /* Core palette — deep cosmic */
+  --void:    #03040a;
+  --deep:    #060914;
+  --surface: #0b0f1e;
+  --raised:  #111626;
+  --lift:    #161c2f;
 
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  /* Text */
+  --t1: #f1f0ff;
+  --t2: #a09dc0;
+  --t3: #54516e;
 
-  html { scroll-behavior: smooth; }
+  /* Borders */
+  --b1: rgba(255,255,255,0.06);
+  --b2: rgba(255,255,255,0.1);
+  --b3: rgba(255,255,255,0.16);
 
-  body {
-    background: var(--bg);
-    color: var(--white);
-    font-family: 'Barlow', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-  }
+  /* Chromatic accents — borrowed from aurora */
+  --violet:  #7c3aed;
+  --indigo:  #4f46e5;
+  --blue:    #2563eb;
+  --cyan:    #06b6d4;
+  --teal:    #0d9488;
+  --rose:    #f43f5e;
+  --amber:   #f59e0b;
+  --lime:    #84cc16;
 
-  /* ── GRID BACKGROUND ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,232,122,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,232,122,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
+  /* Glow colors */
+  --gv: rgba(124,58,237,0.35);
+  --gi: rgba(79,70,229,0.3);
+  --gc: rgba(6,182,212,0.25);
+  --gr: rgba(244,63,94,0.3);
 
-  /* ── NOISE TEXTURE ── */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    opacity: 0.4;
-    pointer-events: none;
-    z-index: 0;
-  }
+  /* Luminous gradient — the hero gradient that changes everything */
+  --grad-hero: conic-gradient(
+    from 230deg at 50% 40%,
+    #0d0621 0deg,
+    #1a0a3d 60deg,
+    #060c24 120deg,
+    #02131e 180deg,
+    #0d0621 240deg,
+    #150528 300deg,
+    #0d0621 360deg
+  );
+}
 
-  /* ── GLOW ORBS ── */
-  .orb {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(120px);
-    pointer-events: none;
-    z-index: 0;
-    animation: orbPulse 6s ease-in-out infinite alternate;
-  }
-  .orb-1 { width: 500px; height: 500px; background: rgba(0,232,122,0.07); top: -100px; right: -100px; }
-  .orb-2 { width: 400px; height: 400px; background: rgba(0,232,122,0.05); bottom: 0; left: -100px; animation-delay: -3s; }
-  @keyframes orbPulse { from { opacity: 0.5; transform: scale(1); } to { opacity: 1; transform: scale(1.15); } }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--void);
+  color:var(--t1);
+  font-family:'Geist',system-ui,sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
 
-  /* ── LAYOUT ── */
-  .wrapper {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-  }
+/* ═══════════════════════════
+   CURSOR
+═══════════════════════════ */
+#cur{position:fixed;width:6px;height:6px;border-radius:50%;background:#fff;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .25s,height .25s;}
+#cur-o{position:fixed;width:32px;height:32px;border-radius:50%;border:1px solid rgba(124,58,237,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s ease,width .3s,height .3s,opacity .3s,border-color .3s;opacity:.6;}
+body:not(:hover) #cur,body:not(:hover) #cur-o{opacity:0;}
 
-  /* ── HEADER ── */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 28px 48px;
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(10px);
-    background: rgba(5,14,10,0.6);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+/* ═══════════════════════════
+   GLOBAL MESH CANVAS
+═══════════════════════════ */
+#mesh{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
-  .logo-group { display: flex; flex-direction: column; gap: 2px; }
+/* ═══════════════════════════
+   NOISE
+═══════════════════════════ */
+.noise{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='.07'/%3E%3C/svg%3E");}
 
-  .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem;
-    letter-spacing: 0.02em;
-    line-height: 1;
-    color: var(--white);
-  }
-  .logo span { color: var(--emerald); }
+/* ═══════════════════════════
+   HEADER
+═══════════════════════════ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  height:88px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  background:rgba(3,4,10,0.7);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  border-bottom:1px solid var(--b1);
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Geist',sans-serif;font-size:1rem;font-weight:700;
+  letter-spacing:-0.03em;color:var(--t1);text-decoration:none;
+}
+.logo-icon{ display:none; }
+.logo-sub{font-size:0.85rem;font-weight:400;letter-spacing:0.06em;color:var(--t2);margin-left:2px;display:block;white-space:nowrap;}
 
-  .logo-sub {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-chip{
+  font-size:0.58rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
+  padding:5px 12px;border-radius:100px;
+  border:1px solid var(--b2);color:var(--t2);
+  background:rgba(255,255,255,0.04);
+  transition:border-color .2s,color .2s,background .2s;
+}
+.nav-chip:hover{border-color:var(--violet);color:var(--t1);background:rgba(124,58,237,0.1);}
+.nav-chip.hi{background:linear-gradient(135deg,var(--violet),var(--indigo));border:none;color:#fff;box-shadow:0 0 20px rgba(124,58,237,0.4);}
+.nav-sep{width:1px;height:18px;background:var(--b1);}
+.nav-url{font-size:0.62rem;color:var(--t3);letter-spacing:0.06em;}
+.nav-url a{color:var(--t2);text-decoration:none;transition:color .2s;}
+.nav-url a:hover{color:var(--cyan);}
 
-  .header-badges {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-  .badge {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--emerald);
-    border: 1px solid var(--border);
-    padding: 5px 14px;
-    background: var(--emerald-glow2);
-  }
+/* ═══════════════════════════
+   HERO
+═══════════════════════════ */
+.hero{
+  min-height:100vh;padding-top:88px;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+  padding-left:48px;padding-right:48px;
+  /* Deep conic base */
+  background:var(--grad-hero);
+}
 
-  .website-url {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    border-left: 1px solid var(--border);
-    padding-left: 20px;
-  }
-  .website-url a { color: var(--emerald-dim); text-decoration: none; transition: color 0.2s; }
-  .website-url a:hover { color: var(--emerald); }
+/* Luminous orbs — the magic */
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px);}
+.orb-1{width:700px;height:700px;top:-200px;left:-150px;background:radial-gradient(circle,rgba(124,58,237,0.22),transparent 70%);animation:orbDrift1 22s ease-in-out infinite alternate;}
+.orb-2{width:600px;height:600px;top:10%;right:-100px;background:radial-gradient(circle,rgba(6,182,212,0.18),transparent 70%);animation:orbDrift2 18s ease-in-out infinite alternate;}
+.orb-3{width:500px;height:500px;bottom:-100px;left:30%;background:radial-gradient(circle,rgba(79,70,229,0.15),transparent 70%);animation:orbDrift3 25s ease-in-out infinite alternate;}
+.orb-4{width:400px;height:400px;top:40%;right:30%;background:radial-gradient(circle,rgba(244,63,94,0.1),transparent 70%);animation:orbDrift1 19s 3s ease-in-out infinite alternate;}
+@keyframes orbDrift1{from{transform:translate(0,0) scale(1);}to{transform:translate(60px,40px) scale(1.1);}}
+@keyframes orbDrift2{from{transform:translate(0,0) scale(1);}to{transform:translate(-50px,60px) scale(1.08);}}
+@keyframes orbDrift3{from{transform:translate(0,0) scale(1);}to{transform:translate(40px,-50px) scale(1.12);}}
 
-  /* ── HERO ── */
-  .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 60px 48px 40px;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-  }
+/* Grid overlay */
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);
+}
 
-  .status-line {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 32px;
-    animation: fadeUp 0.8s ease both;
-  }
-  .status-dot {
-    width: 8px; height: 8px;
-    background: var(--emerald);
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--emerald);
-    animation: blink 1.5s ease-in-out infinite;
-  }
-  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+/* Radial vignette */
+.hero-vignette{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 100% 100% at 50% 0%,transparent 40%,rgba(3,4,10,0.8) 100%);
+}
 
-  .status-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--emerald);
-  }
-  .status-line::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, var(--border-strong), transparent);
-  }
+.hero-inner{
+  position:relative;z-index:2;
+  max-width:1280px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 400px;
+  align-items:center;gap:80px;
+  padding:80px 0;
+}
 
-  .hero-headline {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4rem, 10vw, 9rem);
-    line-height: 0.88;
-    letter-spacing: 0.02em;
-    margin-bottom: 12px;
-    animation: fadeUp 0.8s 0.1s ease both;
-  }
-  .hero-headline .accent { color: var(--emerald); }
-  .hero-headline .outline {
-    -webkit-text-stroke: 1px rgba(0,232,122,0.4);
-    color: transparent;
-  }
+/* Status badge */
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(124,58,237,0.12);
+  border:1px solid rgba(124,58,237,0.3);
+  border-radius:100px;padding:6px 16px;
+  margin-bottom:40px;width:fit-content;
+  opacity:0;animation:fadeUp .7s .1s ease forwards;
+}
+.hb-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--cyan);
+  box-shadow:0 0 8px var(--cyan);
+  animation:hbPulse 2s ease-in-out infinite;
+}
+@keyframes hbPulse{0%,100%{box-shadow:0 0 8px var(--cyan);}50%{box-shadow:0 0 20px var(--cyan),0 0 40px rgba(6,182,212,0.3);}}
+.hb-text{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);}
 
-  .hero-sub {
-    font-family: 'Barlow', sans-serif;
-    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-    font-weight: 300;
-    color: var(--off-white);
-    max-width: 680px;
-    line-height: 1.7;
-    margin-bottom: 56px;
-    margin-top: 16px;
-    animation: fadeUp 0.8s 0.2s ease both;
-  }
+/* Giant headline */
+.hero-h1{margin-bottom:28px;}
+.h1-line{display:block;overflow:hidden;margin-bottom:2px;}
+.h1-word{
+  display:block;
+  font-family:'Instrument Serif',Georgia,serif;
+  font-size:clamp(3.5rem,7.5vw,7.8rem);
+  font-weight:400;font-style:normal;
+  line-height:.9;letter-spacing:-0.03em;
+  color:var(--t1);
+  opacity:0;transform:translateY(110%);
+  animation:wordUp 1s cubic-bezier(.16,1,.3,1) forwards;
+}
+.h1-line:nth-child(1) .h1-word{animation-delay:.18s;}
+.h1-line:nth-child(2) .h1-word{animation-delay:.3s;}
+.h1-line:nth-child(3) .h1-word{animation-delay:.42s;}
+@keyframes wordUp{from{opacity:1;transform:translateY(110%);}to{opacity:1;transform:translateY(0);}}
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+/* Gradient text */
+.h1-grad{
+  background:linear-gradient(135deg,#a78bfa,#38bdf8,#34d399);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.h1-italic{font-style:italic;}
+.h1-outline{
+  -webkit-text-fill-color:transparent;
+  -webkit-text-stroke:1.5px rgba(167,139,250,0.4);
+}
 
-  /* ── PHASE CARDS ── */
-  .phases-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 20px;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
+.hero-sub{
+  font-size:1.05rem;font-weight:300;color:var(--t2);
+  max-width:560px;line-height:1.85;
+  opacity:0;animation:fadeUp .8s .62s ease forwards;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
-  .phases {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    margin-bottom: 64px;
-    animation: fadeUp 0.8s 0.4s ease both;
-  }
+/* RIGHT PANEL — glasscard */
+.hero-panel{
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--b2);
+  border-radius:20px;
+  padding:36px 32px;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  position:relative;overflow:hidden;
+  opacity:0;animation:fadeUp .9s .5s ease forwards;
+  box-shadow:0 0 0 1px rgba(255,255,255,0.04),0 40px 80px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.08);
+}
+/* Panel inner glow */
+.hero-panel::before{
+  content:'';position:absolute;
+  inset:-1px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(6,182,212,0.08),transparent 60%);
+  pointer-events:none;
+}
+.hero-panel::after{
+  content:'';position:absolute;
+  top:-40%;left:-40%;width:80%;height:80%;
+  background:radial-gradient(circle,rgba(124,58,237,0.12),transparent 70%);
+  pointer-events:none;
+  animation:panelGlow 6s ease-in-out infinite alternate;
+}
+@keyframes panelGlow{from{opacity:.6;transform:translate(0,0);}to{opacity:1;transform:translate(20px,20px);}}
 
-  .phase-card {
-    background: rgba(0,40,22,0.4);
-    border: 1px solid var(--border);
-    padding: 28px 24px 32px;
-    position: relative;
-    overflow: hidden;
-    cursor: default;
-    transition: background 0.3s, border-color 0.3s, transform 0.3s;
-  }
-  .phase-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--emerald);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .phase-card:hover::before { transform: scaleX(1); }
-  .phase-card:hover {
-    background: rgba(0,232,122,0.07);
-    border-color: var(--border-strong);
-    transform: translateY(-4px);
-  }
+.panel-eyebrow{font-size:0.58rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;position:relative;z-index:1;}
+.panel-stat{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(4rem,9vw,6.5rem);
+  font-weight:400;letter-spacing:-0.04em;line-height:.85;
+  background:linear-gradient(135deg,#f43f5e,#fb923c,#fbbf24);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  position:relative;z-index:1;
+  margin-bottom:16px;
+}
+.panel-desc{
+  font-size:0.82rem;font-weight:400;color:var(--t2);
+  line-height:1.65;
+  padding-top:16px;margin-top:4px;
+  border-top:1px solid var(--b1);
+  position:relative;z-index:1;
+}
 
-  .phase-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 4rem;
-    color: rgba(0,232,122,0.08);
-    position: absolute;
-    bottom: 12px; right: 16px;
-    line-height: 1;
-    pointer-events: none;
-    transition: color 0.3s;
-  }
-  .phase-card:hover .phase-num { color: rgba(0,232,122,0.14); }
+/* Progress */
+.panel-progress{margin-top:28px;position:relative;z-index:1;}
+.pp-top{
+  display:flex;justify-content:space-between;
+  font-size:0.6rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:10px;
+}
+.pp-top span:last-child{color:var(--cyan);}
+.pp-track{height:3px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;}
+.pp-fill{
+  height:100%;width:0;border-radius:4px;
+  background:linear-gradient(90deg,var(--violet),var(--cyan));
+  box-shadow:0 0 12px rgba(6,182,212,0.5);
+  animation:ppFill 2.5s 1.5s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes ppFill{from{width:0;}to{width:74%;}}
 
-  .phase-tag {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--emerald);
-    margin-bottom: 10px;
-  }
+/* Scroll cue */
+.hero-scroll{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fadeUp .8s 1.2s ease forwards;z-index:2;
+}
+.hs-text{font-size:0.55rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--t3);}
+.hs-arrow{width:1px;height:32px;background:linear-gradient(to bottom,var(--t3),transparent);position:relative;overflow:hidden;}
+.hs-arrow::after{content:'';position:absolute;top:-100%;left:0;width:1px;height:100%;background:var(--violet);animation:arrowDrop 1.5s 1.5s ease-in-out infinite;}
+@keyframes arrowDrop{from{top:-100%;}to{top:200%;}}
 
-  .phase-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    letter-spacing: 0.04em;
-    color: var(--white);
-    margin-bottom: 6px;
-    line-height: 1;
-  }
+/* ═══════════════════════════
+   TICKER
+═══════════════════════════ */
+.ticker{
+  height:44px;overflow:hidden;position:relative;
+  background:linear-gradient(90deg,var(--violet),var(--indigo),var(--blue),var(--cyan),var(--teal),var(--indigo),var(--violet));
+  background-size:200%;
+  animation:tickerGrad 8s linear infinite;
+}
+@keyframes tickerGrad{from{background-position:0%;}to{background-position:200%;}}
+.ticker-inner{display:flex;height:100%;animation:tickerScroll 30s linear infinite;}
+@keyframes tickerScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.ti{
+  display:flex;align-items:center;gap:16px;
+  padding:0 28px;height:100%;white-space:nowrap;
+  font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.15);
+}
+.ti-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.5);}
 
-  .phase-keyword {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--emerald-dim);
-    margin-bottom: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
-  }
+/* ═══════════════════════════
+   SECTION COMMONS
+═══════════════════════════ */
+.section{max-width:1280px;margin:0 auto;padding:96px 48px;}
 
-  .phase-desc {
-    font-size: 0.82rem;
-    color: var(--off-white);
-    line-height: 1.65;
-    font-weight: 300;
-  }
+.s-eyebrow{
+  font-size:0.6rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.s-eyebrow::before{content:'';width:24px;height:1px;background:var(--violet);}
 
-  /* ── DIVIDER ── */
-  .section-divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--border-strong), transparent);
-    margin: 0 0 56px;
-  }
+.s-title{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(2rem,4.5vw,3.8rem);
+  font-weight:400;letter-spacing:-0.03em;
+  line-height:1;color:var(--t1);
+  margin-bottom:56px;
+}
+.s-title em{font-style:italic;background:linear-gradient(135deg,#a78bfa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
-  /* ── COMING SOON BLOCK ── */
-  .coming-soon-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 48px 24px 24px;
-    animation: fadeUp 0.8s 0.5s ease both;
-  }
+/* ═══════════════════════════
+   PHASES
+═══════════════════════════ */
+.phases-bg{background:var(--deep);}
 
-  .cs-eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--emerald);
-    margin-bottom: 20px;
-  }
+.phases-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--b1);
+  border:1px solid var(--b1);
+  border-radius:16px;overflow:hidden;
+}
 
-  .cs-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 7vw, 6rem);
-    letter-spacing: 0.06em;
-    line-height: 1;
-    margin-bottom: 20px;
-  }
-  .cs-title span { color: var(--emerald); }
+.ph-card{
+  background:var(--surface);
+  padding:36px 28px 48px;
+  position:relative;overflow:hidden;
+  cursor:default;
+  transition:background .35s;
+  group:hover;
+}
+.ph-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:2px;
+  background:var(--accent-line,linear-gradient(90deg,var(--violet),var(--cyan)));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+.ph-card:nth-child(1){--accent-line:linear-gradient(90deg,#7c3aed,#4f46e5);}
+.ph-card:nth-child(2){--accent-line:linear-gradient(90deg,#06b6d4,#0d9488);}
+.ph-card:nth-child(3){--accent-line:linear-gradient(90deg,#f59e0b,#ef4444);}
+.ph-card:nth-child(4){--accent-line:linear-gradient(90deg,#84cc16,#06b6d4);}
+.ph-card:hover::before{transform:scaleX(1);}
+.ph-card:hover{background:var(--raised);}
 
-  .cs-body {
-    font-size: 0.95rem;
-    color: var(--off-white);
-    font-weight: 300;
-    max-width: 520px;
-    line-height: 1.7;
-    margin-bottom: 40px;
-  }
+/* Ambient glow on hover */
+.ph-card::after{
+  content:'';position:absolute;
+  width:200px;height:200px;border-radius:50%;
+  top:-60px;right:-60px;
+  opacity:0;
+  transition:opacity .4s;
+  pointer-events:none;
+}
+.ph-card:nth-child(1)::after{background:radial-gradient(circle,rgba(124,58,237,0.15),transparent);}
+.ph-card:nth-child(2)::after{background:radial-gradient(circle,rgba(6,182,212,0.12),transparent);}
+.ph-card:nth-child(3)::after{background:radial-gradient(circle,rgba(245,158,11,0.12),transparent);}
+.ph-card:nth-child(4)::after{background:radial-gradient(circle,rgba(132,204,22,0.12),transparent);}
+.ph-card:hover::after{opacity:1;}
 
-  /* ── PROGRESS BAR ── */
-  .progress-wrap {
-    width: 100%;
-    max-width: 520px;
-    margin-bottom: 48px;
-  }
-  .progress-labels {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .progress-labels span:last-child { color: var(--emerald); }
-  .progress-bar-track {
-    height: 3px;
-    background: var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-  .progress-bar-fill {
-    height: 100%;
-    width: 72%;
-    background: linear-gradient(to right, var(--emerald-dark), var(--emerald));
-    box-shadow: 0 0 16px var(--emerald);
-    animation: fillBar 2s 1s ease both;
-  }
-  @keyframes fillBar { from { width: 0; } to { width: 72%; } }
+.ph-num-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border-radius:8px;
+  border:1px solid var(--b2);
+  font-size:0.65rem;font-weight:700;letter-spacing:-0.02em;
+  color:var(--t3);margin-bottom:20px;
+  background:rgba(255,255,255,0.03);
+}
+.ph-step{font-size:0.58rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--t3);margin-bottom:16px;}
+.ph-title{
+  font-family:'Instrument Serif',serif;
+  font-size:2rem;font-weight:400;letter-spacing:-0.02em;
+  color:var(--t1);margin-bottom:8px;line-height:1;
+}
+.ph-kw{
+  font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--t3);padding-bottom:16px;margin-bottom:16px;
+  border-bottom:1px solid var(--b1);
+}
+.ph-desc{font-size:0.83rem;color:var(--t2);line-height:1.75;font-weight:300;}
+.ph-bg-num{
+  font-family:'Instrument Serif',serif;
+  font-size:8rem;font-weight:400;
+  color:rgba(255,255,255,0.025);
+  position:absolute;bottom:-20px;right:12px;
+  line-height:1;pointer-events:none;
+}
+.ph-card:hover .ph-bg-num{color:rgba(255,255,255,0.04);}
 
-  /* ── CONTACT CARDS ── */
-  .contact-section {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 56px;
-    animation: fadeUp 0.8s 0.6s ease both;
-  }
+/* ═══════════════════════════
+   CHALLENGES
+═══════════════════════════ */
+.chal-bg{
+  background:var(--void);
+  position:relative;
+  border-top:1px solid var(--b1);
+}
 
-  .contact-card {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: rgba(0,40,22,0.5);
-    border: 1px solid var(--border);
-    padding: 18px 28px;
-    text-decoration: none;
-    transition: background 0.3s, border-color 0.3s, transform 0.2s;
-    min-width: 260px;
-  }
-  .contact-card:hover {
-    background: rgba(0,232,122,0.08);
-    border-color: var(--emerald-dim);
-    transform: translateY(-3px);
-  }
+/* Subtle top gradient */
+.chal-bg::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:200px;
+  background:linear-gradient(to bottom,rgba(124,58,237,0.04),transparent);
+  pointer-events:none;
+}
 
-  .contact-icon {
-    width: 38px; height: 38px;
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    background: rgba(0,232,122,0.06);
-  }
-  .contact-icon svg { width: 18px; height: 18px; fill: var(--emerald); }
+.ch-hdr{
+  display:flex;align-items:flex-end;
+  justify-content:space-between;
+  margin-bottom:32px;gap:32px;
+  flex-wrap:wrap;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--b1);
+}
+.ch-hdr-left{}
+.ch-stat{text-align:right;}
+.ch-stat-num{
+  font-family:'Instrument Serif',serif;
+  font-size:4rem;font-weight:400;letter-spacing:-0.05em;line-height:.85;
+  background:linear-gradient(135deg,var(--rose),#fb923c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.ch-stat-sub{font-size:0.58rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-top:8px;line-height:1.55;text-align:right;}
 
-  .contact-info { display: flex; flex-direction: column; gap: 3px; }
-  .contact-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .contact-value {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: var(--off-white);
-    letter-spacing: 0.02em;
-  }
-  .contact-card:hover .contact-value { color: var(--emerald); }
+/* Warn banner */
+.warn{
+  background:rgba(244,63,94,0.06);
+  border:1px solid rgba(244,63,94,0.18);
+  border-left:3px solid var(--rose);
+  border-radius:0 8px 8px 0;
+  padding:18px 24px;
+  margin-bottom:28px;
+  display:flex;align-items:center;gap:16px;
+}
+.warn-icon{font-size:1.1rem;flex-shrink:0;}
+.warn-txt{font-size:0.9rem;color:var(--t2);line-height:1.65;font-weight:300;}
+.warn-txt strong{color:#fb7185;font-weight:600;}
 
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 22px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    backdrop-filter: blur(10px);
-    background: rgba(5,14,10,0.6);
-  }
+/* 3-col grid */
+.chal-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--b1);
+  border:1px solid var(--b1);border-radius:16px;overflow:hidden;
+}
 
-  .footer-copy {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
+.cc{
+  background:var(--surface);
+  padding:28px 24px 40px;
+  position:relative;overflow:hidden;
+  cursor:default;
+  transition:background .3s;
+}
+.cc:hover{background:var(--raised);}
 
-  .footer-tags {
-    display: flex;
-    gap: 20px;
-  }
-  .footer-tag {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--muted);
-    position: relative;
-  }
-  .footer-tag::before {
-    content: '—';
-    margin-right: 8px;
-    color: var(--emerald);
-  }
+/* Top shimmer on hover */
+.cc::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--rose),transparent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+.cc:hover::before{transform:scaleX(1);}
 
-  /* ── CONNECTOR LINES (decorative) ── */
-  .connector {
-    position: absolute;
-    background: var(--emerald);
-    opacity: 0.3;
-  }
+/* Inner glow */
+.cc::after{
+  content:'';position:absolute;
+  width:160px;height:160px;border-radius:50%;
+  top:-60px;right:-40px;
+  background:radial-gradient(circle,rgba(244,63,94,0.08),transparent);
+  opacity:0;transition:opacity .35s;pointer-events:none;
+}
+.cc:hover::after{opacity:1;}
 
-  /* ── SCAN LINE ANIMATION ── */
-  .scanline {
-    position: fixed;
-    top: -4px;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(to bottom, transparent, rgba(0,232,122,0.06), transparent);
-    animation: scan 8s linear infinite;
-    pointer-events: none;
-    z-index: 200;
-  }
-  @keyframes scan { from { top: -4px; } to { top: 100vh; } }
+.cc-sev{display:flex;align-items:center;gap:8px;margin-bottom:18px;}
+.cc-pips{display:flex;gap:3px;}
+.cc-pip{width:16px;height:2px;border-radius:2px;background:rgba(244,63,94,0.12);}
+.cc-pip.on{background:var(--rose);}
+.cc-sev-lbl{font-size:0.56rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose);opacity:.75;}
 
-  /* ── CHALLENGES SECTION ── */
-  .challenges-section {
-    margin-bottom: 64px;
-    animation: fadeUp 0.8s 0.45s ease both;
-  }
+.cc-icon-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.cc-icon{
+  width:38px;height:38px;border-radius:8px;
+  background:rgba(244,63,94,0.07);border:1px solid rgba(244,63,94,0.15);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
+}
+.cc-tag{font-size:0.56rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--t3);}
 
-  .challenges-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 32px;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
+.cc-title{
+  font-family:'Instrument Serif',serif;
+  font-size:1.3rem;font-weight:400;letter-spacing:-0.02em;
+  color:var(--t1);line-height:1.1;margin-bottom:6px;
+}
+.cc-sub{font-size:0.63rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--b1);}
+.cc-desc{font-size:0.8rem;color:var(--t2);line-height:1.75;font-weight:300;margin-bottom:16px;}
+.cc-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.cc-list li{font-size:0.69rem;color:var(--t3);display:flex;gap:8px;line-height:1.45;}
+.cc-list li::before{content:'↳';color:rgba(244,63,94,0.4);flex-shrink:0;}
+.cc-bgnum{
+  font-family:'Instrument Serif',serif;
+  font-size:8rem;font-weight:400;
+  color:rgba(255,255,255,0.018);
+  position:absolute;bottom:-18px;right:10px;
+  line-height:1;pointer-events:none;
+}
+.cc:hover .cc-bgnum{color:rgba(244,63,94,0.05);}
 
-  .challenges-title-group { display: flex; flex-direction: column; gap: 8px; }
+/* Resolve strip */
+.ch-resolve{
+  margin-top:1px;
+  background:rgba(79,70,229,0.07);
+  border:1px solid rgba(79,70,229,0.18);
+  border-top:none;border-radius:0 0 16px 16px;
+  padding:22px 28px;
+  display:flex;align-items:center;gap:14px;
+}
+.chr-pulse{
+  width:8px;height:8px;border-radius:50%;flex-shrink:0;
+  background:var(--indigo);
+  box-shadow:0 0 12px var(--indigo);
+  animation:chrP 2.5s ease-in-out infinite;
+}
+@keyframes chrP{0%,100%{box-shadow:0 0 12px var(--indigo);}50%{box-shadow:0 0 28px rgba(79,70,229,0.7);}}
+.chr-txt{font-size:0.88rem;color:var(--t2);line-height:1.6;font-weight:300;}
+.chr-txt strong{color:#818cf8;font-weight:600;}
 
-  .challenges-eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
+/* ═══════════════════════════
+   CTA / COMING SOON
+═══════════════════════════ */
+.cta-wrap{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+  background-size:400%;
+  animation:ctaBG 15s ease-in-out infinite alternate;
+}
+@keyframes ctaBG{
+  0%{background-position:0% 50%;}
+  100%{background-position:100% 50%;}
+}
 
-  .challenges-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
-    letter-spacing: 0.04em;
-    line-height: 1;
-    color: var(--white);
-  }
-  .challenges-title span { color: var(--emerald); }
+/* Luminous orbs inside CTA */
+.cta-orb1{position:absolute;width:600px;height:600px;border-radius:50%;top:-200px;left:-100px;background:radial-gradient(circle,rgba(124,58,237,0.2),transparent 70%);filter:blur(60px);animation:orbDrift1 15s ease-in-out infinite alternate;pointer-events:none;}
+.cta-orb2{position:absolute;width:500px;height:500px;border-radius:50%;bottom:-150px;right:-80px;background:radial-gradient(circle,rgba(6,182,212,0.18),transparent 70%);filter:blur(60px);animation:orbDrift2 12s ease-in-out infinite alternate;pointer-events:none;}
 
-  .challenges-stat {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-  }
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3rem;
-    color: var(--emerald);
-    line-height: 1;
-  }
-  .stat-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: right;
-  }
+.cta-inner{
+  position:relative;z-index:2;
+  max-width:1280px;margin:0 auto;
+  padding:100px 48px;
+  display:grid;grid-template-columns:1fr 440px;
+  gap:80px;align-items:center;
+}
 
-  /* Central failure statement */
-  .failure-banner {
-    background: rgba(180,20,20,0.06);
-    border: 1px solid rgba(255,60,60,0.18);
-    border-left: 3px solid rgba(255,80,80,0.6);
-    padding: 20px 28px;
-    margin-bottom: 28px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-  }
-  .failure-banner-icon {
-    font-size: 1.4rem;
-    flex-shrink: 0;
-    opacity: 0.8;
-  }
-  .failure-banner-text {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.92rem;
-    font-weight: 400;
-    color: var(--off-white);
-    line-height: 1.6;
-  }
-  .failure-banner-text strong {
-    color: rgba(255,120,120,0.9);
-    font-weight: 600;
-  }
+.cta-left-content{}
+.cta-ey{font-size:0.6rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px;}
+.cta-title{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(2.8rem,6vw,5.5rem);
+  font-weight:400;letter-spacing:-0.04em;
+  line-height:.9;color:var(--t1);
+  margin-bottom:0;
+}
+.cta-title em{
+  font-style:italic;
+  background:linear-gradient(135deg,#a78bfa,#38bdf8,#34d399);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
 
-  /* Challenge cards grid */
-  .challenge-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
+.cta-progress{margin-top:40px;}
+.ctp-lbl{
+  display:flex;justify-content:space-between;
+  font-size:0.6rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);margin-bottom:10px;
+}
+.ctp-lbl span:last-child{color:var(--cyan);}
+.ctp-track{height:3px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden;}
+.ctp-fill{
+  height:100%;width:0;border-radius:4px;
+  background:linear-gradient(90deg,var(--violet),var(--cyan));
+  box-shadow:0 0 16px rgba(6,182,212,0.4);
+  animation:ctpFill 2.5s .5s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes ctpFill{from{width:0;}to{width:74%;}}
 
-  .challenge-card {
-    background: rgba(10,5,5,0.6);
-    border: 1px solid rgba(255,60,60,0.12);
-    padding: 30px 26px 36px;
-    position: relative;
-    overflow: hidden;
-    cursor: default;
-    transition: background 0.3s, border-color 0.3s, transform 0.3s;
-  }
-  .challenge-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(to right, rgba(255,80,80,0.7), rgba(255,140,60,0.5));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .challenge-card:hover::before { transform: scaleX(1); }
-  .challenge-card:hover {
-    background: rgba(255,50,50,0.05);
-    border-color: rgba(255,80,80,0.28);
-    transform: translateY(-4px);
-  }
+/* Right glass card */
+.cta-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;padding:36px 32px;
+  backdrop-filter:blur(20px);
+  box-shadow:0 40px 80px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.08);
+  display:flex;flex-direction:column;gap:32px;
+}
 
-  /* Severity indicator */
-  .challenge-severity {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 18px;
-  }
-  .severity-bar {
-    display: flex;
-    gap: 3px;
-  }
-  .severity-pip {
-    width: 18px; height: 4px;
-    background: rgba(255,80,80,0.2);
-    border-radius: 2px;
-  }
-  .severity-pip.active { background: rgba(255,80,80,0.75); }
-  .severity-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.58rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(255,100,100,0.7);
-  }
+.cta-body{
+  font-size:0.98rem;font-weight:300;color:var(--t2);
+  line-height:1.82;
+  border-left:2px solid rgba(167,139,250,0.4);
+  padding-left:18px;
+}
 
-  .challenge-icon-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 14px;
-  }
-  .challenge-icon {
-    width: 44px; height: 44px;
-    border: 1px solid rgba(255,80,80,0.2);
-    background: rgba(255,50,50,0.06);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    font-size: 1.2rem;
-  }
-  .challenge-num-tag {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(255,100,100,0.6);
-  }
+.contact-list{display:flex;flex-direction:column;gap:10px;}
+.contact-item{
+  display:flex;align-items:center;gap:14px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;padding:16px 20px;
+  text-decoration:none;
+  transition:background .25s,border-color .25s,transform .25s,box-shadow .25s;
+}
+.contact-item:hover{
+  background:rgba(255,255,255,0.07);
+  border-color:rgba(167,139,250,0.3);
+  transform:translateX(4px);
+  box-shadow:0 0 24px rgba(124,58,237,0.12);
+}
+.ci-icon{
+  width:38px;height:38px;border-radius:10px;
+  background:linear-gradient(135deg,rgba(124,58,237,0.3),rgba(79,70,229,0.2));
+  border:1px solid rgba(124,58,237,0.3);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.ci-icon svg{width:17px;height:17px;fill:#a78bfa;}
+.ci-info{display:flex;flex-direction:column;gap:3px;}
+.ci-label{font-size:0.56rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--t3);}
+.ci-val{font-size:0.9rem;font-weight:500;color:var(--t1);}
+.contact-item:hover .ci-val{color:#a78bfa;}
 
-  .challenge-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.65rem;
-    letter-spacing: 0.04em;
-    color: var(--white);
-    line-height: 1.05;
-    margin-bottom: 8px;
-  }
+/* ═══════════════════════════
+   FOOTER
+═══════════════════════════ */
+footer{
+  background:var(--void);
+  border-top:1px solid var(--b1);
+  padding:20px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.f-l{font-size:0.58rem;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);}
+.f-r{display:flex;gap:24px;}
+.f-tag{font-size:0.56rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);position:relative;padding-left:14px;}
+.f-tag::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:6px;height:1px;background:var(--violet);}
 
-  .challenge-subtitle {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(255,120,80,0.7);
-    margin-bottom: 14px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid rgba(255,60,60,0.12);
-  }
+/* ═══════════════════════════
+   REVEAL SYSTEM
+═══════════════════════════ */
+.r{opacity:0;transform:translateY(36px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);}
+.r.v{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.06s;}.d2{transition-delay:.13s;}.d3{transition-delay:.2s;}.d4{transition-delay:.27s;}
+.d5{transition-delay:.34s;}.d6{transition-delay:.41s;}
 
-  .challenge-desc {
-    font-size: 0.82rem;
-    color: var(--off-white);
-    line-height: 1.68;
-    font-weight: 300;
-    margin-bottom: 18px;
-  }
-
-  /* Impact bullets */
-  .challenge-impacts { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-  .challenge-impacts li {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    color: rgba(200,180,180,0.75);
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    line-height: 1.4;
-  }
-  .challenge-impacts li::before {
-    content: '↳';
-    color: rgba(255,100,80,0.6);
-    flex-shrink: 0;
-    margin-top: 1px;
-    font-size: 0.8rem;
-  }
-
-  .challenge-bg-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 6rem;
-    color: rgba(255,60,60,0.04);
-    position: absolute;
-    bottom: -8px; right: 12px;
-    line-height: 1;
-    pointer-events: none;
-  }
-
-  /* Bottom connector strip */
-  .challenges-footer-strip {
-    margin-top: 28px;
-    padding: 18px 24px;
-    background: rgba(0,232,122,0.03);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .strip-dot { width: 6px; height: 6px; background: var(--emerald); border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 8px var(--emerald); }
-  .strip-text {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 300;
-    color: var(--off-white);
-    line-height: 1.5;
-  }
-  .strip-text strong { color: var(--emerald); font-weight: 600; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    header { padding: 20px 24px; }
-    .hero { padding: 40px 24px 30px; }
-    .phases { grid-template-columns: repeat(2, 1fr); }
-    .challenge-grid { grid-template-columns: repeat(2, 1fr); }
-    footer { padding: 18px 24px; flex-direction: column; gap: 10px; text-align: center; }
-  }
-
-  @media (max-width: 560px) {
-    .header-badges { display: none; }
-    .phases { grid-template-columns: 1fr; }
-    .challenge-grid { grid-template-columns: 1fr; }
-    .website-url { border-left: none; padding-left: 0; }
-  }
+/* ═══════════════════════════
+   RESPONSIVE
+═══════════════════════════ */
+@media(max-width:1100px){
+  .hero-inner{grid-template-columns:1fr;gap:48px;}
+  .hero-panel{max-width:480px;}
+  .phases-grid{grid-template-columns:1fr 1fr;}
+  .chal-grid{grid-template-columns:1fr 1fr;}
+  .cta-inner{grid-template-columns:1fr;gap:48px;}
+  .cta-card{max-width:480px;}
+}
+@media(max-width:720px){
+  header{padding:0 20px;}
+  .nav-right .nav-chip:not(.hi),.nav-sep,.nav-url{display:none;}
+  .hero,.section,.cta-inner{padding-left:20px;padding-right:20px;}
+  .phases-grid,.chal-grid{grid-template-columns:1fr;}
+  footer{padding:16px 20px;flex-direction:column;gap:12px;text-align:center;}
+  .cta-inner{padding:64px 20px;}
+  .ch-hdr{flex-direction:column;}
+  .ch-stat{text-align:left;}
+}
 </style>
 </head>
 <body>
+<div id="cur"></div>
+<div id="cur-o"></div>
+<div class="noise"></div>
 
-<div class="scanline"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-
-<div class="wrapper">
-
-  <!-- HEADER -->
-  <header>
-    <div class="logo-group">
-      <div class="logo">Enterprise<span>IQ</span></div>
-      <div class="logo-sub">Blueprints for Digital Readiness. Foundation for AI Success.</div>
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="logo" style="flex-direction:column;align-items:flex-start;gap:4px;">
+    <div style="font-family:'Geist',sans-serif;font-size:2.2rem;font-weight:700;letter-spacing:-0.03em;">
+      Enterprise<span style="background:linear-gradient(135deg,#a78bfa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">IQ</span>
     </div>
-    <div class="header-badges">
-      <div class="badge">AI</div>
-      <div class="badge">Digital Transformation</div>
-      <div class="website-url">
-        <a href="https://www.enterpriseiq.in" target="_blank">www.enterpriseiq.in</a>
+    <div class="logo-sub">Blueprints for Digital Readiness. Foundation for AI Success.</div>
+  </div>
+  <div class="nav-right">
+    <div class="nav-chip hi">AI</div>
+    <div class="nav-chip">Digital Transformation</div>
+    <a class="nav-chip" href="#contact" style="text-decoration:none;background:rgba(6,182,212,0.12);border-color:rgba(6,182,212,0.35);color:var(--cyan);display:flex;align-items:center;gap:6px;">
+      <span style="width:5px;height:5px;border-radius:50%;background:var(--cyan);display:inline-block;box-shadow:0 0 6px var(--cyan);"></span>Contact
+    </a>
+    <div class="nav-sep"></div>
+    <div class="nav-url"><a href="https://www.enterpriseiq.in" target="_blank">enterpriseiq.in</a></div>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-vignette"></div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="hb-dot"></div>
+        <span class="hb-text">Platform under development</span>
+      </div>
+
+      <h1 class="hero-h1">
+        <span class="h1-line"><span class="h1-word h1-white">Build <span class="h1-grad">Resilient</span></span></span>
+        <span class="h1-line"><span class="h1-word h1-outline">AI-Ready</span></span>
+        <span class="h1-line"><span class="h1-word">Digital <span class="h1-grad">Organizations</span></span></span>
+      </h1>
+
+      <p class="hero-sub">Uniting domain expertise, process intelligence, and IT capability to craft enterprise blueprints that accelerate every phase of digital transformation — driving operational efficiency and strategic growth.</p>
+    </div>
+
+    <div class="hero-panel">
+      <div class="panel-eyebrow">Transformation failure rate</div>
+      <div class="panel-stat">70%</div>
+      <div class="panel-desc">of digital transformation initiatives fail to meet their goals. EnterpriseIQ is purpose-built to change that — systematically.</div>
+      <div class="panel-progress">
+        <div class="pp-top"><span>Platform progress</span><span>74%</span></div>
+        <div class="pp-track"><div class="pp-fill"></div></div>
       </div>
     </div>
-  </header>
+  </div>
 
-  <!-- MAIN -->
-  <main>
-    <div class="hero">
+  <div class="hero-scroll">
+    <span class="hs-text">Scroll</span>
+    <div class="hs-arrow"></div>
+  </div>
+</section>
 
-      <!-- STATUS -->
-      <div class="status-line">
-        <div class="status-dot"></div>
-        <span class="status-text">Platform under development</span>
+<!-- ══ TICKER ══ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <div class="ti"><div class="ti-dot"></div>Organise</div>
+    <div class="ti"><div class="ti-dot"></div>Phase 01</div>
+    <div class="ti"><div class="ti-dot"></div>Optimise</div>
+    <div class="ti"><div class="ti-dot"></div>Phase 02</div>
+    <div class="ti"><div class="ti-dot"></div>Strategise</div>
+    <div class="ti"><div class="ti-dot"></div>Phase 03</div>
+    <div class="ti"><div class="ti-dot"></div>Modernise</div>
+    <div class="ti"><div class="ti-dot"></div>Phase 04</div>
+    <div class="ti"><div class="ti-dot"></div>AI Blueprints</div>
+    <div class="ti"><div class="ti-dot"></div>Process Intelligence</div>
+    <div class="ti"><div class="ti-dot"></div>Digital Transformation</div>
+    <div class="ti"><div class="ti-dot"></div>Organise</div>
+    <div class="ti"><div class="ti-dot"></div>Phase 01</div>
+    <div class="ti"><div class="ti-dot"></div>Optimise</div>
+    <div class="ti"><div class="ti-dot"></div>Phase 02</div>
+    <div class="ti"><div class="ti-dot"></div>Strategise</div>
+    <div class="ti"><div class="ti-dot"></div>Phase 03</div>
+    <div class="ti"><div class="ti-dot"></div>Modernise</div>
+    <div class="ti"><div class="ti-dot"></div>Phase 04</div>
+    <div class="ti"><div class="ti-dot"></div>AI Blueprints</div>
+    <div class="ti"><div class="ti-dot"></div>Process Intelligence</div>
+    <div class="ti"><div class="ti-dot"></div>Digital Transformation</div>
+  </div>
+</div>
+
+<!-- ══ PHASES ══ -->
+<div class="phases-bg">
+  <div class="section">
+    <div class="s-eyebrow r">Our Four-Phase Framework</div>
+    <div class="s-title r d1">The Path to<br><em>Digital Readiness</em></div>
+
+    <div class="phases-grid">
+      <div class="ph-card r d1">
+        <div class="ph-num-badge">01</div>
+        <div class="ph-step">Phase 01 — Organise</div>
+        <div class="ph-title">AS IS</div>
+        <div class="ph-kw">Know your current state</div>
+        <div class="ph-desc">Collect enterprise processes, application utilisation, data and integration points. Build business capability models across all functions and departments.</div>
+        <div class="ph-bg-num">01</div>
+      </div>
+      <div class="ph-card r d2">
+        <div class="ph-num-badge">02</div>
+        <div class="ph-step">Phase 02 — Optimise</div>
+        <div class="ph-title">TO BE</div>
+        <div class="ph-kw">Define the future blueprint</div>
+        <div class="ph-desc">Identify and eliminate non-value-added activities through value stream mapping and lean manufacturing. Embed mistake-proofing to simplify and streamline for greater efficiency.</div>
+        <div class="ph-bg-num">02</div>
+      </div>
+      <div class="ph-card r d3">
+        <div class="ph-num-badge">03</div>
+        <div class="ph-step">Phase 03 — Strategise</div>
+        <div class="ph-title">FOCUS</div>
+        <div class="ph-kw">Prioritize what matters most</div>
+        <div class="ph-desc">Align business and IT strategy, identify intelligent automation opportunities, and prioritize digital transformation initiatives and investments with precision.</div>
+        <div class="ph-bg-num">03</div>
+      </div>
+      <div class="ph-card r d4">
+        <div class="ph-num-badge">04</div>
+        <div class="ph-step">Phase 04 — Modernise</div>
+        <div class="ph-title">TRANSFORM</div>
+        <div class="ph-kw">Drive digital implementation</div>
+        <div class="ph-desc">Collaborate with business teams and partner with IT to drive implementation — defining scope, requirements, test scenarios, execution and end-user training.</div>
+        <div class="ph-bg-num">04</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CHALLENGES ══ -->
+<div class="chal-bg">
+  <div class="section">
+    <div class="ch-hdr r">
+      <div>
+        <div class="s-eyebrow" style="margin-bottom:14px;">Why Transformations Fail</div>
+        <div class="s-title" style="margin-bottom:0;">Top <em>Challenges</em><br>in IT / AI / Digital</div>
+      </div>
+      <div class="ch-stat">
+        <div class="ch-stat-num">70%</div>
+        <div class="ch-stat-sub">of digital transformation<br>initiatives fail to meet goals</div>
+      </div>
+    </div>
+
+    <div class="warn r">
+      <div class="warn-icon">⚠</div>
+      <div class="warn-txt">Most IT, AI and Digital implementation failures are <strong>not technology problems</strong> — they are <strong>knowledge, clarity and ownership gaps</strong> that surface long before a single line of code is written or a model is trained.</div>
+    </div>
+
+    <div class="chal-grid">
+
+      <div class="cc r d1">
+        <div class="cc-sev"><div class="cc-pips"><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div></div><span class="cc-sev-lbl">Critical</span></div>
+        <div class="cc-icon-row"><div class="cc-icon">📋</div><span class="cc-tag">Challenge — 01</span></div>
+        <div class="cc-title">Undocumented Processes</div>
+        <div class="cc-sub">The invisible workflow problem</div>
+        <div class="cc-desc">When business processes exist only in people's heads — never mapped, never written — digital systems are built on assumption rather than truth. AI models trained on incomplete process data produce unreliable outputs, and automation scripts break the moment an undocumented edge case appears.</div>
+        <ul class="cc-list">
+          <li>Systems replicate inefficiencies or informal workarounds, embedding them permanently</li>
+          <li>Scope creep explodes mid-project as hidden steps surface too late</li>
+          <li>AI/ML models inherit tribal knowledge gaps, causing silent errors in production</li>
+          <li>Change management fails — staff reject systems that don't reflect how work actually happens</li>
+        </ul>
+        <div class="cc-bgnum">01</div>
       </div>
 
-      <!-- HEADLINE -->
-      <div class="hero-headline">
-        <div>Build <span class="accent">Resilient</span></div>
-        <div class="outline">AI-Ready</div>
-        <div>Digital <span class="accent">Organizations</span></div>
-        </div>
-      <p class="hero-sub">
-        Uniting domain expertise, process intelligence, and IT capability to craft enterprise blueprints that accelerate every phase of digital transformation — driving operational efficiency and strategic growth.
-      </p>
-
-      <!-- PHASES -->
-      <div class="phases-label">Our Four-Phase Framework</div>
-      <div class="phases">
-
-        <div class="phase-card">
-          <div class="phase-tag">Phase 01 — Organise</div>
-          <div class="phase-title">AS IS</div>
-          <div class="phase-keyword">Know your current state</div>
-          <div class="phase-desc">
-            Collect enterprise processes, application utilisation, data and integration points. Build business capability models across all functions and departments.
-          </div>
-          <div class="phase-num">01</div>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-tag">Phase 02 — Optimise</div>
-          <div class="phase-title">TO BE</div>
-          <div class="phase-keyword">Define the future blueprint</div>
-          <div class="phase-desc">
-            Identify and eliminate non-value-added activities through value stream mapping and lean manufacturing. Embed mistake-proofing to simplify and streamline for greater efficiency.
-          </div>
-          <div class="phase-num">02</div>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-tag">Phase 03 — Strategise</div>
-          <div class="phase-title">FOCUS</div>
-          <div class="phase-keyword">Prioritize what matters most</div>
-          <div class="phase-desc">
-            Align business and IT strategy, identify intelligent automation opportunities, and prioritize digital transformation initiatives and investments with precision.
-          </div>
-          <div class="phase-num">03</div>
-        </div>
-
-        <div class="phase-card">
-          <div class="phase-tag">Phase 04 — Modernise</div>
-          <div class="phase-title">TRANSFORM</div>
-          <div class="phase-keyword">Drive digital implementation</div>
-          <div class="phase-desc">
-            Collaborate with business teams and partner with IT to drive implementation — defining scope, requirements, test scenarios, execution and end-user training.
-          </div>
-          <div class="phase-num">04</div>
-        </div>
-
+      <div class="cc r d2">
+        <div class="cc-sev"><div class="cc-pips"><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip"></div></div><span class="cc-sev-lbl">High</span></div>
+        <div class="cc-icon-row"><div class="cc-icon">🗄️</div><span class="cc-tag">Challenge — 02</span></div>
+        <div class="cc-title">Unclear Data Ownership</div>
+        <div class="cc-sub">The accountability vacuum</div>
+        <div class="cc-desc">Without clear data stewardship, enterprises operate on siloed, contradictory datasets. AI initiatives collapse when models cannot be trusted because nobody knows which source is authoritative. Data governance becomes firefighting rather than strategy.</div>
+        <ul class="cc-list">
+          <li>Duplicate, inconsistent master data corrupts analytics and AI training sets</li>
+          <li>Integration projects stall — no single team has authority to resolve data conflicts</li>
+          <li>Compliance and audit failures emerge from untracked data lineage</li>
+          <li>Business decisions made on stale or siloed data, undermining transformation ROI</li>
+        </ul>
+        <div class="cc-bgnum">02</div>
       </div>
 
-      <!-- ══ CHALLENGES SECTION ══ -->
-      <div class="challenges-section">
-
-        <div class="challenges-header">
-          <div class="challenges-title-group">
-            <div class="challenges-eyebrow">Why Transformations Fail</div>
-            <div class="challenges-title">Top <span>Challenges</span><br>in IT / AI / Digital</div>
-          </div>
-          <div class="challenges-stat">
-            <div class="stat-num">70%</div>
-            <div class="stat-label">of digital transformation<br>initiatives fail to meet goals</div>
-          </div>
-        </div>
-
-        <div class="failure-banner">
-          <div class="failure-banner-icon">⚠</div>
-          <div class="failure-banner-text">
-            Most IT, AI and Digital implementation failures are <strong>not technology problems</strong> — they are <strong>knowledge, clarity and ownership gaps</strong> that surface long before a single line of code is written or a model is trained.
-          </div>
-        </div>
-
-        <div class="challenge-grid">
-
-          <!-- Card 1 -->
-          <div class="challenge-card">
-            <div class="challenge-severity">
-              <div class="severity-bar">
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-              </div>
-              <span class="severity-label">Critical</span>
-            </div>
-            <div class="challenge-icon-row">
-              <div class="challenge-icon">📋</div>
-              <span class="challenge-num-tag">Challenge — 01</span>
-            </div>
-            <div class="challenge-title">Undocumented Processes</div>
-            <div class="challenge-subtitle">The invisible workflow problem</div>
-            <div class="challenge-desc">
-              When business processes exist only in people's heads — never mapped, never written — digital systems are built on assumption rather than truth. AI models trained on incomplete process data produce unreliable outputs, and automation scripts break the moment an undocumented edge case appears.
-            </div>
-            <ul class="challenge-impacts">
-              <li>Systems replicate inefficiencies or informal workarounds, embedding them permanently</li>
-              <li>Scope creep explodes mid-project as hidden steps surface too late</li>
-              <li>AI/ML models inherit tribal knowledge gaps, causing silent errors in production</li>
-              <li>Change management fails — staff reject systems that don't reflect how work actually happens</li>
-            </ul>
-            <div class="challenge-bg-num">01</div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="challenge-card">
-            <div class="challenge-severity">
-              <div class="severity-bar">
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip"></div>
-              </div>
-              <span class="severity-label">High</span>
-            </div>
-            <div class="challenge-icon-row">
-              <div class="challenge-icon">🗄️</div>
-              <span class="challenge-num-tag">Challenge — 02</span>
-            </div>
-            <div class="challenge-title">Unclear Data Ownership</div>
-            <div class="challenge-subtitle">The accountability vacuum</div>
-            <div class="challenge-desc">
-              Without clear data stewardship, enterprises operate on siloed, contradictory datasets. AI initiatives collapse when models cannot be trusted because nobody knows which source is authoritative. Data governance becomes firefighting rather than strategy.
-            </div>
-            <ul class="challenge-impacts">
-              <li>Duplicate, inconsistent master data corrupts analytics and AI training sets</li>
-              <li>Integration projects stall — no single team has authority to resolve data conflicts</li>
-              <li>Compliance and audit failures emerge from untracked data lineage</li>
-              <li>Business decisions made on stale or siloed data, undermining transformation ROI</li>
-            </ul>
-            <div class="challenge-bg-num">02</div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="challenge-card">
-            <div class="challenge-severity">
-              <div class="severity-bar">
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip"></div>
-              </div>
-              <span class="severity-label">High</span>
-            </div>
-            <div class="challenge-icon-row">
-              <div class="challenge-icon">🎯</div>
-              <span class="challenge-num-tag">Challenge — 03</span>
-            </div>
-            <div class="challenge-title">Unclear Requirements</div>
-            <div class="challenge-subtitle">The moving-target syndrome</div>
-            <div class="challenge-desc">
-              Vague, incomplete or constantly shifting requirements are the single greatest predictor of project failure. When business stakeholders and IT teams speak different languages, the delivered system solves the wrong problem — on time and on budget.
-            </div>
-            <ul class="challenge-impacts">
-              <li>Rework costs multiply — late-stage requirement changes cost 100× more to fix than early ones</li>
-              <li>User acceptance testing reveals fundamental misalignment, forcing full redesigns</li>
-              <li>AI use-case definitions remain too abstract to translate into model objectives</li>
-              <li>Teams lose stakeholder trust and budget confidence, killing future initiatives</li>
-            </ul>
-            <div class="challenge-bg-num">03</div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="challenge-card">
-            <div class="challenge-severity">
-              <div class="severity-bar">
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip"></div>
-                <div class="severity-pip"></div>
-              </div>
-              <span class="severity-label">Significant</span>
-            </div>
-            <div class="challenge-icon-row">
-              <div class="challenge-icon">🔗</div>
-              <span class="challenge-num-tag">Challenge — 04</span>
-            </div>
-            <div class="challenge-title">Siloed Domain Knowledge</div>
-            <div class="challenge-subtitle">Expertise fragmentation</div>
-            <div class="challenge-desc">
-              Business domain knowledge, process understanding and IT capability rarely converge. When IT builds without domain depth, or business teams design without IT awareness, systems are technically sound but operationally unfit for purpose.
-            </div>
-            <ul class="challenge-impacts">
-              <li>Critical business rules omitted from system design — only discovered post-launch</li>
-              <li>Integration gaps between departments create manual workarounds and shadow IT</li>
-              <li>AI models optimise for wrong metrics because domain experts weren't consulted</li>
-            </ul>
-            <div class="challenge-bg-num">04</div>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="challenge-card">
-            <div class="challenge-severity">
-              <div class="severity-bar">
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip"></div>
-                <div class="severity-pip"></div>
-              </div>
-              <span class="severity-label">Significant</span>
-            </div>
-            <div class="challenge-icon-row">
-              <div class="challenge-icon">⚙️</div>
-              <span class="challenge-num-tag">Challenge — 05</span>
-            </div>
-            <div class="challenge-title">No Value Stream Clarity</div>
-            <div class="challenge-subtitle">Automating broken processes</div>
-            <div class="challenge-desc">
-              Organisations rush to automate or digitise existing workflows without first eliminating waste. The result: expensive technology that accelerates the delivery of bad outcomes. Digital transformation amplifies problems rather than solving them.
-            </div>
-            <ul class="challenge-impacts">
-              <li>RPA and AI bots hard-coded to flawed processes create brittle, high-maintenance systems</li>
-              <li>Lean opportunities permanently lost once automation is embedded</li>
-              <li>Fast-failing digital products erode executive appetite for future investment</li>
-            </ul>
-            <div class="challenge-bg-num">05</div>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="challenge-card">
-            <div class="challenge-severity">
-              <div class="severity-bar">
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip active"></div>
-                <div class="severity-pip"></div>
-                <div class="severity-pip"></div>
-              </div>
-              <span class="severity-label">Significant</span>
-            </div>
-            <div class="challenge-icon-row">
-              <div class="challenge-icon">🧭</div>
-              <span class="challenge-num-tag">Challenge — 06</span>
-            </div>
-            <div class="challenge-title">Misaligned IT & Business Strategy</div>
-            <div class="challenge-subtitle">Investing in the wrong direction</div>
-            <div class="challenge-desc">
-              When IT roadmaps are built in isolation from business strategy, organisations invest in the wrong platforms, the wrong capabilities, and the wrong sequence of priorities — discovering the mismatch only after significant spend.
-            </div>
-            <ul class="challenge-impacts">
-              <li>Technology selected for vendor familiarity rather than strategic fit</li>
-              <li>High-value digital initiatives deprioritised in favour of visible but low-impact projects</li>
-              <li>Transformation programme restarts drain resources and damage credibility</li>
-            </ul>
-            <div class="challenge-bg-num">06</div>
-          </div>
-
-        </div>
-
-        <div class="challenges-footer-strip">
-          <div class="strip-dot"></div>
-          <div class="strip-text">
-            <strong>EnterpriseIQ addresses every one of these failure points</strong> — systematically, through our four-phase Organise → Optimise → Strategise → Modernise framework, ensuring your transformation is built on documented reality, not assumption.
-          </div>
-        </div>
-
+      <div class="cc r d3">
+        <div class="cc-sev"><div class="cc-pips"><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip"></div></div><span class="cc-sev-lbl">High</span></div>
+        <div class="cc-icon-row"><div class="cc-icon">🎯</div><span class="cc-tag">Challenge — 03</span></div>
+        <div class="cc-title">Unclear Requirements</div>
+        <div class="cc-sub">The moving-target syndrome</div>
+        <div class="cc-desc">Vague, incomplete or constantly shifting requirements are the single greatest predictor of project failure. When business stakeholders and IT teams speak different languages, the delivered system solves the wrong problem — on time and on budget.</div>
+        <ul class="cc-list">
+          <li>Rework costs multiply — late-stage requirement changes cost 100× more to fix than early ones</li>
+          <li>User acceptance testing reveals fundamental misalignment, forcing full redesigns</li>
+          <li>AI use-case definitions remain too abstract to translate into model objectives</li>
+          <li>Teams lose stakeholder trust and budget confidence, killing future initiatives</li>
+        </ul>
+        <div class="cc-bgnum">03</div>
       </div>
-      <!-- ══ END CHALLENGES ══ -->
 
-      <div class="section-divider"></div>
+      <div class="cc r d1">
+        <div class="cc-sev"><div class="cc-pips"><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip"></div><div class="cc-pip"></div></div><span class="cc-sev-lbl">Significant</span></div>
+        <div class="cc-icon-row"><div class="cc-icon">🔗</div><span class="cc-tag">Challenge — 04</span></div>
+        <div class="cc-title">Siloed Domain Knowledge</div>
+        <div class="cc-sub">Expertise fragmentation</div>
+        <div class="cc-desc">Business domain knowledge, process understanding and IT capability rarely converge. When IT builds without domain depth, or business teams design without IT awareness, systems are technically sound but operationally unfit for purpose.</div>
+        <ul class="cc-list">
+          <li>Critical business rules omitted from system design — only discovered post-launch</li>
+          <li>Integration gaps between departments create manual workarounds and shadow IT</li>
+          <li>AI models optimise for wrong metrics because domain experts weren't consulted</li>
+        </ul>
+        <div class="cc-bgnum">04</div>
+      </div>
 
-      <!-- COMING SOON -->
-      <div class="coming-soon-block">
-        <div class="cs-eyebrow">Platform Status</div>
-        <div class="cs-title">Website <span>In</span> Progress</div>
-        <p class="cs-body">
-          We're building something powerful. Our full platform — featuring enterprise assessment tools, digital transformation blueprints, and AI-driven strategy modules — is coming soon.
-        </p>
+      <div class="cc r d2">
+        <div class="cc-sev"><div class="cc-pips"><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip"></div><div class="cc-pip"></div></div><span class="cc-sev-lbl">Significant</span></div>
+        <div class="cc-icon-row"><div class="cc-icon">⚙️</div><span class="cc-tag">Challenge — 05</span></div>
+        <div class="cc-title">No Value Stream Clarity</div>
+        <div class="cc-sub">Automating broken processes</div>
+        <div class="cc-desc">Organisations rush to automate or digitise existing workflows without first eliminating waste. The result: expensive technology that accelerates the delivery of bad outcomes. Digital transformation amplifies problems rather than solving them.</div>
+        <ul class="cc-list">
+          <li>RPA and AI bots hard-coded to flawed processes create brittle, high-maintenance systems</li>
+          <li>Lean opportunities permanently lost once automation is embedded</li>
+          <li>Fast-failing digital products erode executive appetite for future investment</li>
+        </ul>
+        <div class="cc-bgnum">05</div>
+      </div>
 
-        <div class="progress-wrap">
-          <div class="progress-labels">
-            <span>Development Progress</span>
-            <span>72%</span>
-          </div>
-          <div class="progress-bar-track">
-            <div class="progress-bar-fill"></div>
-          </div>
-        </div>
-
-        <!-- CONTACT -->
-        <div class="contact-section">
-
-          <a class="contact-card" href="mailto:info@enterpriseiq.in">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
-              </svg>
-            </div>
-            <div class="contact-info">
-              <span class="contact-label">Email Us</span>
-              <span class="contact-value">info@enterpriseiq.in</span>
-            </div>
-          </a>
-
-          <a class="contact-card" href="https://wa.me/919834180043" target="_blank">
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
-              </svg>
-            </div>
-            <div class="contact-info">
-              <span class="contact-label">WhatsApp</span>
-              <span class="contact-value">+91 98341 80043</span>
-            </div>
-          </a>
-
-        </div>
-
+      <div class="cc r d3">
+        <div class="cc-sev"><div class="cc-pips"><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip"></div><div class="cc-pip"></div></div><span class="cc-sev-lbl">Significant</span></div>
+        <div class="cc-icon-row"><div class="cc-icon">🧭</div><span class="cc-tag">Challenge — 06</span></div>
+        <div class="cc-title">Misaligned IT &amp; Business Strategy</div>
+        <div class="cc-sub">Investing in the wrong direction</div>
+        <div class="cc-desc">When IT roadmaps are built in isolation from business strategy, organisations invest in the wrong platforms, the wrong capabilities, and the wrong sequence of priorities — discovering the mismatch only after significant spend.</div>
+        <ul class="cc-list">
+          <li>Technology selected for vendor familiarity rather than strategic fit</li>
+          <li>High-value digital initiatives deprioritised in favour of visible but low-impact projects</li>
+          <li>Transformation programme restarts drain resources and damage credibility</li>
+        </ul>
+        <div class="cc-bgnum">06</div>
       </div>
 
     </div>
-  </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-copy">&copy; 2025 EnterpriseIQ · All rights reserved</div>
-    <div class="footer-tags">
-      <span class="footer-tag">AI Strategy</span>
-      <span class="footer-tag
+    <div class="ch-resolve r">
+      <div class="chr-pulse"></div>
+      <div class="chr-txt"><strong>EnterpriseIQ addresses every one of these failure points</strong> — systematically, through our four-phase Organise → Optimise → Strategise → Modernise framework, ensuring your transformation is built on documented reality, not assumption.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CTA ══ -->
+<div class="cta-wrap" id="contact">
+  <div class="cta-orb1"></div>
+  <div class="cta-orb2"></div>
+  <div class="cta-inner">
+    <div class="cta-left-content r">
+      <div class="cta-ey">Platform Status</div>
+      <div class="cta-title">Website<br><em>In Progress</em></div>
+      <div class="cta-progress">
+        <div class="ctp-lbl"><span>Development Progress</span><span>74%</span></div>
+        <div class="ctp-track"><div class="ctp-fill"></div></div>
+      </div>
+    </div>
+    <div class="cta-card r d2">
+      <p class="cta-body">We're building something powerful. Our full platform — featuring enterprise assessment tools, digital transformation blueprints, and AI-driven strategy modules — is coming soon.</p>
+      <div class="contact-list">
+        <a class="contact-item" href="mailto:info@enterpriseiq.in">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          <div class="ci-info"><span class="ci-label">Email Us</span><span class="ci-val">info@enterpriseiq.in</span></div>
+        </a>
+        <a class="contact-item" href="https://wa.me/919834180043" target="_blank">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></div>
+          <div class="ci-info"><span class="ci-label">WhatsApp</span><span class="ci-val">+91 98341 80043</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="f-l">&copy; 2025 EnterpriseIQ · All rights reserved</div>
+  <div class="f-r">
+    <span class="f-tag">AI Strategy</span>
+    <span class="f-tag">Digital Transformation</span>
+    <span class="f-tag">Process Intelligence</span>
+  </div>
+</footer>
+
+<script>
+/* Cursor */
+const cur=document.getElementById('cur'),curo=document.getElementById('cur-o');
+let mx=0,my=0,ox=0,oy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function loop(){ox+=(mx-ox)*.1;oy+=(my-oy)*.1;curo.style.left=ox+'px';curo.style.top=oy+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.ph-card,.cc').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='14px';cur.style.height='14px';curo.style.width='48px';curo.style.height='48px';curo.style.borderColor='rgba(124,58,237,0.8)';curo.style.opacity='.5';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='6px';cur.style.height='6px';curo.style.width='32px';curo.style.height='32px';curo.style.borderColor='rgba(124,58,237,0.5)';curo.style.opacity='.6';});
+});
+
+/* Scroll reveal */
+const io=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target);}});},{threshold:.07});
+document.querySelectorAll('.r').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
