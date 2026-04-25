@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EnterpriseIQ — Blueprints for Digital Readiness</title>
+<title>EnterpriseIQ — Measure Digital Readiness | Blueprints for Digital Transformation</title>
 <meta name="description" content="EnterpriseIQ — Blueprints for Digital Readiness. Foundation for AI Success.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,24 +12,17 @@
    DESIGN TOKENS
 ═══════════════════════════ */
 :root{
-  /* Core palette — deep cosmic */
   --void:    #03040a;
   --deep:    #060914;
   --surface: #0b0f1e;
   --raised:  #111626;
   --lift:    #161c2f;
-
-  /* Text */
   --t1: #f1f0ff;
   --t2: #a09dc0;
   --t3: #54516e;
-
-  /* Borders */
   --b1: rgba(255,255,255,0.06);
   --b2: rgba(255,255,255,0.1);
   --b3: rgba(255,255,255,0.16);
-
-  /* Chromatic accents — borrowed from aurora */
   --violet:  #7c3aed;
   --indigo:  #4f46e5;
   --blue:    #2563eb;
@@ -38,83 +31,31 @@
   --rose:    #f43f5e;
   --amber:   #f59e0b;
   --lime:    #84cc16;
-
-  /* Glow colors */
   --gv: rgba(124,58,237,0.35);
   --gi: rgba(79,70,229,0.3);
   --gc: rgba(6,182,212,0.25);
   --gr: rgba(244,63,94,0.3);
-
-  /* Luminous gradient — the hero gradient that changes everything */
-  --grad-hero: conic-gradient(
-    from 230deg at 50% 40%,
-    #0d0621 0deg,
-    #1a0a3d 60deg,
-    #060c24 120deg,
-    #02131e 180deg,
-    #0d0621 240deg,
-    #150528 300deg,
-    #0d0621 360deg
-  );
+  --grad-hero: conic-gradient(from 230deg at 50% 40%,#0d0621 0deg,#1a0a3d 60deg,#060c24 120deg,#02131e 180deg,#0d0621 240deg,#150528 300deg,#0d0621 360deg);
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{
-  background:var(--void);
-  color:var(--t1);
-  font-family:'Geist',system-ui,sans-serif;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
+body{background:var(--void);color:var(--t1);font-family:'Geist',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
-/* ═══════════════════════════
-   CURSOR
-═══════════════════════════ */
+/* CURSOR */
 #cur{position:fixed;width:6px;height:6px;border-radius:50%;background:#fff;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .25s,height .25s;}
 #cur-o{position:fixed;width:32px;height:32px;border-radius:50%;border:1px solid rgba(124,58,237,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s ease,width .3s,height .3s,opacity .3s,border-color .3s;opacity:.6;}
 body:not(:hover) #cur,body:not(:hover) #cur-o{opacity:0;}
 
-/* ═══════════════════════════
-   GLOBAL MESH CANVAS
-═══════════════════════════ */
-#mesh{position:fixed;inset:0;z-index:0;pointer-events:none;}
+/* NOISE */
+.noise{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='.07'/%3E%3C/svg%3E");}
 
-/* ═══════════════════════════
-   NOISE
-═══════════════════════════ */
-.noise{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.35;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='.07'/%3E%3C/svg%3E");}
-
-/* ═══════════════════════════
-   HEADER
-═══════════════════════════ */
-header{
-  position:fixed;top:0;left:0;right:0;z-index:900;
-  height:88px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 48px;
-  background:rgba(3,4,10,0.7);
-  backdrop-filter:blur(24px) saturate(180%);
-  -webkit-backdrop-filter:blur(24px) saturate(180%);
-  border-bottom:1px solid var(--b1);
-}
-.logo{
-  display:flex;align-items:center;gap:10px;
-  font-family:'Geist',sans-serif;font-size:1rem;font-weight:700;
-  letter-spacing:-0.03em;color:var(--t1);text-decoration:none;
-}
-.logo-icon{ display:none; }
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:900;height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(3,4,10,0.7);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--b1);}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Geist',sans-serif;font-size:1rem;font-weight:700;letter-spacing:-0.03em;color:var(--t1);text-decoration:none;}
 .logo-sub{font-size:0.85rem;font-weight:400;letter-spacing:0.06em;color:var(--t2);margin-left:2px;display:block;white-space:nowrap;}
-
 .nav-right{display:flex;align-items:center;gap:10px;}
-.nav-chip{
-  font-size:0.58rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
-  padding:5px 12px;border-radius:100px;
-  border:1px solid var(--b2);color:var(--t2);
-  background:rgba(255,255,255,0.04);
-  transition:border-color .2s,color .2s,background .2s;
-}
+.nav-chip{font-size:0.58rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:5px 12px;border-radius:100px;border:1px solid var(--b2);color:var(--t2);background:rgba(255,255,255,0.04);transition:border-color .2s,color .2s,background .2s;cursor:default;}
 .nav-chip:hover{border-color:var(--violet);color:var(--t1);background:rgba(124,58,237,0.1);}
 .nav-chip.hi{background:linear-gradient(135deg,var(--violet),var(--indigo));border:none;color:#fff;box-shadow:0 0 20px rgba(124,58,237,0.4);}
 .nav-sep{width:1px;height:18px;background:var(--b1);}
@@ -122,19 +63,8 @@ header{
 .nav-url a{color:var(--t2);text-decoration:none;transition:color .2s;}
 .nav-url a:hover{color:var(--cyan);}
 
-/* ═══════════════════════════
-   HERO
-═══════════════════════════ */
-.hero{
-  min-height:100vh;padding-top:88px;
-  position:relative;overflow:hidden;
-  display:flex;flex-direction:column;justify-content:center;
-  padding-left:48px;padding-right:48px;
-  /* Deep conic base */
-  background:var(--grad-hero);
-}
-
-/* Luminous orbs — the magic */
+/* HERO */
+.hero{min-height:100vh;padding-top:88px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding-left:48px;padding-right:48px;background:var(--grad-hero);}
 .orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px);}
 .orb-1{width:700px;height:700px;top:-200px;left:-150px;background:radial-gradient(circle,rgba(124,58,237,0.22),transparent 70%);animation:orbDrift1 22s ease-in-out infinite alternate;}
 .orb-2{width:600px;height:600px;top:10%;right:-100px;background:radial-gradient(circle,rgba(6,182,212,0.18),transparent 70%);animation:orbDrift2 18s ease-in-out infinite alternate;}
@@ -144,540 +74,682 @@ header{
 @keyframes orbDrift2{from{transform:translate(0,0) scale(1);}to{transform:translate(-50px,60px) scale(1.08);}}
 @keyframes orbDrift3{from{transform:translate(0,0) scale(1);}to{transform:translate(40px,-50px) scale(1.12);}}
 
-/* Grid overlay */
-.hero-grid{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);
-}
-
-/* Radial vignette */
-.hero-vignette{
-  position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 100% 100% at 50% 0%,transparent 40%,rgba(3,4,10,0.8) 100%);
-}
-
-.hero-inner{
-  position:relative;z-index:2;
-  max-width:1280px;margin:0 auto;width:100%;
-  display:grid;grid-template-columns:1fr 400px;
-  align-items:center;gap:80px;
-  padding:80px 0;
-}
-
-/* Status badge */
-.hero-badge{
-  display:inline-flex;align-items:center;gap:10px;
-  background:rgba(124,58,237,0.12);
-  border:1px solid rgba(124,58,237,0.3);
-  border-radius:100px;padding:6px 16px;
-  margin-bottom:40px;width:fit-content;
-  opacity:0;animation:fadeUp .7s .1s ease forwards;
-}
-.hb-dot{
-  width:7px;height:7px;border-radius:50%;
-  background:var(--cyan);
-  box-shadow:0 0 8px var(--cyan);
-  animation:hbPulse 2s ease-in-out infinite;
-}
+.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);}
+.hero-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 100% 100% at 50% 0%,transparent 40%,rgba(3,4,10,0.8) 100%);}
+.hero-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 400px;align-items:center;gap:80px;padding:80px 0;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.3);border-radius:100px;padding:6px 16px;margin-bottom:40px;width:fit-content;opacity:0;animation:fadeUp .7s .1s ease forwards;}
+.hb-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:hbPulse 2s ease-in-out infinite;}
 @keyframes hbPulse{0%,100%{box-shadow:0 0 8px var(--cyan);}50%{box-shadow:0 0 20px var(--cyan),0 0 40px rgba(6,182,212,0.3);}}
 .hb-text{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);}
-
-/* Giant headline */
 .hero-h1{margin-bottom:28px;}
 .h1-line{display:block;overflow:hidden;margin-bottom:2px;}
-.h1-word{
-  display:block;
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:clamp(3.5rem,7.5vw,7.8rem);
-  font-weight:400;font-style:normal;
-  line-height:.9;letter-spacing:-0.03em;
-  color:var(--t1);
-  opacity:0;transform:translateY(110%);
-  animation:wordUp 1s cubic-bezier(.16,1,.3,1) forwards;
-}
+.h1-word{display:block;font-family:'Instrument Serif',Georgia,serif;font-size:clamp(3.5rem,7.5vw,7.8rem);font-weight:400;font-style:normal;line-height:.9;letter-spacing:-0.03em;color:var(--t1);opacity:0;transform:translateY(110%);animation:wordUp 1s cubic-bezier(.16,1,.3,1) forwards;}
 .h1-line:nth-child(1) .h1-word{animation-delay:.18s;}
 .h1-line:nth-child(2) .h1-word{animation-delay:.3s;}
 .h1-line:nth-child(3) .h1-word{animation-delay:.42s;}
 @keyframes wordUp{from{opacity:1;transform:translateY(110%);}to{opacity:1;transform:translateY(0);}}
-
-/* Gradient text */
-.h1-grad{
-  background:linear-gradient(135deg,#a78bfa,#38bdf8,#34d399);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-}
+.h1-grad{background:linear-gradient(135deg,#a78bfa,#38bdf8,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .h1-italic{font-style:italic;}
-.h1-outline{
-  -webkit-text-fill-color:transparent;
-  -webkit-text-stroke:1.5px rgba(167,139,250,0.4);
-}
-
-.hero-sub{
-  font-size:1.05rem;font-weight:300;color:var(--t2);
-  max-width:560px;line-height:1.85;
-  opacity:0;animation:fadeUp .8s .62s ease forwards;
-}
+.h1-outline{-webkit-text-fill-color:transparent;-webkit-text-stroke:1.5px rgba(167,139,250,0.4);}
+.hero-sub{font-size:1.05rem;font-weight:300;color:var(--t2);max-width:560px;line-height:1.85;opacity:0;animation:fadeUp .8s .62s ease forwards;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-
-/* RIGHT PANEL — glasscard */
-.hero-panel{
-  background:rgba(255,255,255,0.04);
-  border:1px solid var(--b2);
-  border-radius:20px;
-  padding:36px 32px;
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  position:relative;overflow:hidden;
-  opacity:0;animation:fadeUp .9s .5s ease forwards;
-  box-shadow:0 0 0 1px rgba(255,255,255,0.04),0 40px 80px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.08);
-}
-/* Panel inner glow */
-.hero-panel::before{
-  content:'';position:absolute;
-  inset:-1px;border-radius:20px;
-  background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(6,182,212,0.08),transparent 60%);
-  pointer-events:none;
-}
-.hero-panel::after{
-  content:'';position:absolute;
-  top:-40%;left:-40%;width:80%;height:80%;
-  background:radial-gradient(circle,rgba(124,58,237,0.12),transparent 70%);
-  pointer-events:none;
-  animation:panelGlow 6s ease-in-out infinite alternate;
-}
+.hero-panel{background:rgba(255,255,255,0.04);border:1px solid var(--b2);border-radius:20px;padding:36px 32px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);position:relative;overflow:hidden;opacity:0;animation:fadeUp .9s .5s ease forwards;box-shadow:0 0 0 1px rgba(255,255,255,0.04),0 40px 80px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.08);}
+.hero-panel::before{content:'';position:absolute;inset:-1px;border-radius:20px;background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(6,182,212,0.08),transparent 60%);pointer-events:none;}
+.hero-panel::after{content:'';position:absolute;top:-40%;left:-40%;width:80%;height:80%;background:radial-gradient(circle,rgba(124,58,237,0.12),transparent 70%);pointer-events:none;animation:panelGlow 6s ease-in-out infinite alternate;}
 @keyframes panelGlow{from{opacity:.6;transform:translate(0,0);}to{opacity:1;transform:translate(20px,20px);}}
-
 .panel-eyebrow{font-size:0.58rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;position:relative;z-index:1;}
-.panel-stat{
-  font-family:'Instrument Serif',serif;
-  font-size:clamp(4rem,9vw,6.5rem);
-  font-weight:400;letter-spacing:-0.04em;line-height:.85;
-  background:linear-gradient(135deg,#f43f5e,#fb923c,#fbbf24);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-  position:relative;z-index:1;
-  margin-bottom:16px;
-}
-.panel-desc{
-  font-size:0.82rem;font-weight:400;color:var(--t2);
-  line-height:1.65;
-  padding-top:16px;margin-top:4px;
-  border-top:1px solid var(--b1);
-  position:relative;z-index:1;
-}
-
-/* Progress */
+.panel-stat{font-family:'Instrument Serif',serif;font-size:clamp(4rem,9vw,6.5rem);font-weight:400;letter-spacing:-0.04em;line-height:.85;background:linear-gradient(135deg,#f43f5e,#fb923c,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1;margin-bottom:16px;}
+.panel-desc{font-size:0.82rem;font-weight:400;color:var(--t2);line-height:1.65;padding-top:16px;margin-top:4px;border-top:1px solid var(--b1);position:relative;z-index:1;}
 .panel-progress{margin-top:28px;position:relative;z-index:1;}
-.pp-top{
-  display:flex;justify-content:space-between;
-  font-size:0.6rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--t3);margin-bottom:10px;
-}
+.pp-top{display:flex;justify-content:space-between;font-size:0.6rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-bottom:10px;}
 .pp-top span:last-child{color:var(--cyan);}
 .pp-track{height:3px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;}
-.pp-fill{
-  height:100%;width:0;border-radius:4px;
-  background:linear-gradient(90deg,var(--violet),var(--cyan));
-  box-shadow:0 0 12px rgba(6,182,212,0.5);
-  animation:ppFill 2.5s 1.5s cubic-bezier(.16,1,.3,1) forwards;
-}
+.pp-fill{height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,var(--violet),var(--cyan));box-shadow:0 0 12px rgba(6,182,212,0.5);animation:ppFill 2.5s 1.5s cubic-bezier(.16,1,.3,1) forwards;}
 @keyframes ppFill{from{width:0;}to{width:74%;}}
-
-/* Scroll cue */
-.hero-scroll{
-  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  opacity:0;animation:fadeUp .8s 1.2s ease forwards;z-index:2;
-}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp .8s 1.2s ease forwards;z-index:2;}
 .hs-text{font-size:0.55rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--t3);}
 .hs-arrow{width:1px;height:32px;background:linear-gradient(to bottom,var(--t3),transparent);position:relative;overflow:hidden;}
 .hs-arrow::after{content:'';position:absolute;top:-100%;left:0;width:1px;height:100%;background:var(--violet);animation:arrowDrop 1.5s 1.5s ease-in-out infinite;}
 @keyframes arrowDrop{from{top:-100%;}to{top:200%;}}
 
-/* ═══════════════════════════
-   TICKER
-═══════════════════════════ */
-.ticker{
-  height:44px;overflow:hidden;position:relative;
-  background:linear-gradient(90deg,var(--violet),var(--indigo),var(--blue),var(--cyan),var(--teal),var(--indigo),var(--violet));
-  background-size:200%;
-  animation:tickerGrad 8s linear infinite;
-}
+/* TICKER */
+.ticker{height:44px;overflow:hidden;position:relative;background:linear-gradient(90deg,var(--violet),var(--indigo),var(--blue),var(--cyan),var(--teal),var(--indigo),var(--violet));background-size:200%;animation:tickerGrad 8s linear infinite;}
 @keyframes tickerGrad{from{background-position:0%;}to{background-position:200%;}}
 .ticker-inner{display:flex;height:100%;animation:tickerScroll 30s linear infinite;}
 @keyframes tickerScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.ti{
-  display:flex;align-items:center;gap:16px;
-  padding:0 28px;height:100%;white-space:nowrap;
-  font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
-  color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.15);
-}
+.ti{display:flex;align-items:center;gap:16px;padding:0 28px;height:100%;white-space:nowrap;font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.9);border-right:1px solid rgba(255,255,255,0.15);}
 .ti-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.5);}
 
-/* ═══════════════════════════
-   SECTION COMMONS
-═══════════════════════════ */
+/* SECTION COMMONS */
 .section{max-width:1280px;margin:0 auto;padding:96px 48px;}
-
-.s-eyebrow{
-  font-size:0.6rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--t3);margin-bottom:14px;
-  display:flex;align-items:center;gap:10px;
-}
+.s-eyebrow{font-size:0.6rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--t3);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .s-eyebrow::before{content:'';width:24px;height:1px;background:var(--violet);}
-
-.s-title{
-  font-family:'Instrument Serif',serif;
-  font-size:clamp(2rem,4.5vw,3.8rem);
-  font-weight:400;letter-spacing:-0.03em;
-  line-height:1;color:var(--t1);
-  margin-bottom:56px;
-}
+.s-title{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4.5vw,3.8rem);font-weight:400;letter-spacing:-0.03em;line-height:1;color:var(--t1);margin-bottom:56px;}
 .s-title em{font-style:italic;background:linear-gradient(135deg,#a78bfa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
-/* ═══════════════════════════
-   PHASES
-═══════════════════════════ */
+/* PHASES */
 .phases-bg{background:var(--deep);}
+.phases-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--b1);border:1px solid var(--b1);border-radius:16px;overflow:hidden;}
 
-.phases-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:1px;
-  background:var(--b1);
-  border:1px solid var(--b1);
-  border-radius:16px;overflow:hidden;
-}
-
-.ph-card{
-  background:var(--surface);
-  padding:36px 28px 48px;
-  position:relative;overflow:hidden;
-  cursor:default;
-  transition:background .35s;
-  group:hover;
-}
-.ph-card::before{
-  content:'';position:absolute;
-  top:0;left:0;right:0;height:2px;
-  background:var(--accent-line,linear-gradient(90deg,var(--violet),var(--cyan)));
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .5s cubic-bezier(.16,1,.3,1);
-}
-.ph-card:nth-child(1){--accent-line:linear-gradient(90deg,#7c3aed,#4f46e5);}
-.ph-card:nth-child(2){--accent-line:linear-gradient(90deg,#06b6d4,#0d9488);}
-.ph-card:nth-child(3){--accent-line:linear-gradient(90deg,#f59e0b,#ef4444);}
-.ph-card:nth-child(4){--accent-line:linear-gradient(90deg,#84cc16,#06b6d4);}
+.ph-card{background:var(--surface);padding:36px 28px 48px;position:relative;overflow:hidden;cursor:pointer;transition:background .35s,transform .25s,box-shadow .35s;border-bottom:3px solid transparent;}
+.ph-card:hover{background:var(--raised);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+.ph-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-line,linear-gradient(90deg,var(--violet),var(--cyan)));transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1);}
+.ph-card:nth-child(1){--accent-line:linear-gradient(90deg,#7c3aed,#4f46e5);--ph-color:#7c3aed;--ph-color2:#4f46e5;}
+.ph-card:nth-child(2){--accent-line:linear-gradient(90deg,#06b6d4,#0d9488);--ph-color:#06b6d4;--ph-color2:#0d9488;}
+.ph-card:nth-child(3){--accent-line:linear-gradient(90deg,#f59e0b,#ef4444);--ph-color:#f59e0b;--ph-color2:#ef4444;}
+.ph-card:nth-child(4){--accent-line:linear-gradient(90deg,#84cc16,#06b6d4);--ph-color:#84cc16;--ph-color2:#06b6d4;}
 .ph-card:hover::before{transform:scaleX(1);}
-.ph-card:hover{background:var(--raised);}
-
-/* Ambient glow on hover */
-.ph-card::after{
-  content:'';position:absolute;
-  width:200px;height:200px;border-radius:50%;
-  top:-60px;right:-60px;
-  opacity:0;
-  transition:opacity .4s;
-  pointer-events:none;
-}
+.ph-card::after{content:'';position:absolute;width:200px;height:200px;border-radius:50%;top:-60px;right:-60px;opacity:0;transition:opacity .4s;pointer-events:none;}
 .ph-card:nth-child(1)::after{background:radial-gradient(circle,rgba(124,58,237,0.15),transparent);}
 .ph-card:nth-child(2)::after{background:radial-gradient(circle,rgba(6,182,212,0.12),transparent);}
 .ph-card:nth-child(3)::after{background:radial-gradient(circle,rgba(245,158,11,0.12),transparent);}
 .ph-card:nth-child(4)::after{background:radial-gradient(circle,rgba(132,204,22,0.12),transparent);}
 .ph-card:hover::after{opacity:1;}
 
-.ph-num-badge{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:32px;height:32px;border-radius:8px;
-  border:1px solid var(--b2);
-  font-size:0.65rem;font-weight:700;letter-spacing:-0.02em;
-  color:var(--t3);margin-bottom:20px;
-  background:rgba(255,255,255,0.03);
-}
+.ph-num-badge{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:1px solid var(--b2);font-size:0.65rem;font-weight:700;letter-spacing:-0.02em;color:var(--t3);margin-bottom:20px;background:rgba(255,255,255,0.03);}
 .ph-step{font-size:0.58rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--t3);margin-bottom:16px;}
-.ph-title{
-  font-family:'Instrument Serif',serif;
-  font-size:2rem;font-weight:400;letter-spacing:-0.02em;
-  color:var(--t1);margin-bottom:8px;line-height:1;
-}
-.ph-kw{
-  font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--t3);padding-bottom:16px;margin-bottom:16px;
-  border-bottom:1px solid var(--b1);
-}
+.ph-title{font-family:'Instrument Serif',serif;font-size:2rem;font-weight:400;letter-spacing:-0.02em;color:var(--t1);margin-bottom:8px;line-height:1;}
+.ph-kw{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--b1);}
 .ph-desc{font-size:0.83rem;color:var(--t2);line-height:1.75;font-weight:300;}
-.ph-bg-num{
-  font-family:'Instrument Serif',serif;
-  font-size:8rem;font-weight:400;
-  color:rgba(255,255,255,0.025);
-  position:absolute;bottom:-20px;right:12px;
-  line-height:1;pointer-events:none;
-}
+.ph-bg-num{font-family:'Instrument Serif',serif;font-size:8rem;font-weight:400;color:rgba(255,255,255,0.025);position:absolute;bottom:-20px;right:12px;line-height:1;pointer-events:none;}
 .ph-card:hover .ph-bg-num{color:rgba(255,255,255,0.04);}
 
-/* ═══════════════════════════
-   CHALLENGES
-═══════════════════════════ */
-.chal-bg{
-  background:var(--void);
-  position:relative;
-  border-top:1px solid var(--b1);
+/* Click hint on cards */
+.ph-click-hint{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:20px;
+  font-size:0.56rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--ph-color,var(--violet));
+  opacity:0;
+  transition:opacity .3s;
 }
+.ph-click-hint svg{width:12px;height:12px;fill:currentColor;}
+.ph-card:hover .ph-click-hint{opacity:1;}
 
-/* Subtle top gradient */
-.chal-bg::before{
-  content:'';position:absolute;
-  top:0;left:0;right:0;height:200px;
-  background:linear-gradient(to bottom,rgba(124,58,237,0.04),transparent);
-  pointer-events:none;
-}
-
-.ch-hdr{
-  display:flex;align-items:flex-end;
-  justify-content:space-between;
-  margin-bottom:32px;gap:32px;
-  flex-wrap:wrap;
-  padding-bottom:28px;
-  border-bottom:1px solid var(--b1);
-}
-.ch-hdr-left{}
+/* CHALLENGES */
+.chal-bg{background:var(--void);position:relative;border-top:1px solid var(--b1);}
+.chal-bg::before{content:'';position:absolute;top:0;left:0;right:0;height:200px;background:linear-gradient(to bottom,rgba(124,58,237,0.04),transparent);pointer-events:none;}
+.ch-hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;gap:32px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid var(--b1);}
 .ch-stat{text-align:right;}
-.ch-stat-num{
-  font-family:'Instrument Serif',serif;
-  font-size:4rem;font-weight:400;letter-spacing:-0.05em;line-height:.85;
-  background:linear-gradient(135deg,var(--rose),#fb923c);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
+.ch-stat-num{font-family:'Instrument Serif',serif;font-size:4rem;font-weight:400;letter-spacing:-0.05em;line-height:.85;background:linear-gradient(135deg,var(--rose),#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .ch-stat-sub{font-size:0.58rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-top:8px;line-height:1.55;text-align:right;}
-
-/* Warn banner */
-.warn{
-  background:rgba(244,63,94,0.06);
-  border:1px solid rgba(244,63,94,0.18);
-  border-left:3px solid var(--rose);
-  border-radius:0 8px 8px 0;
-  padding:18px 24px;
-  margin-bottom:28px;
-  display:flex;align-items:center;gap:16px;
-}
+.warn{background:rgba(244,63,94,0.06);border:1px solid rgba(244,63,94,0.18);border-left:3px solid var(--rose);border-radius:0 8px 8px 0;padding:18px 24px;margin-bottom:28px;display:flex;align-items:center;gap:16px;}
 .warn-icon{font-size:1.1rem;flex-shrink:0;}
 .warn-txt{font-size:0.9rem;color:var(--t2);line-height:1.65;font-weight:300;}
 .warn-txt strong{color:#fb7185;font-weight:600;}
-
-/* 3-col grid */
-.chal-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--b1);
-  border:1px solid var(--b1);border-radius:16px;overflow:hidden;
-}
-
-.cc{
-  background:var(--surface);
-  padding:28px 24px 40px;
-  position:relative;overflow:hidden;
-  cursor:default;
-  transition:background .3s;
-}
+.chal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b1);border:1px solid var(--b1);border-radius:16px;overflow:hidden;}
+.cc{background:var(--surface);padding:28px 24px 40px;position:relative;overflow:hidden;cursor:default;transition:background .3s;}
 .cc:hover{background:var(--raised);}
-
-/* Top shimmer on hover */
-.cc::before{
-  content:'';position:absolute;
-  top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--rose),transparent);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .5s cubic-bezier(.16,1,.3,1);
-}
+.cc::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--rose),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1);}
 .cc:hover::before{transform:scaleX(1);}
-
-/* Inner glow */
-.cc::after{
-  content:'';position:absolute;
-  width:160px;height:160px;border-radius:50%;
-  top:-60px;right:-40px;
-  background:radial-gradient(circle,rgba(244,63,94,0.08),transparent);
-  opacity:0;transition:opacity .35s;pointer-events:none;
-}
+.cc::after{content:'';position:absolute;width:160px;height:160px;border-radius:50%;top:-60px;right:-40px;background:radial-gradient(circle,rgba(244,63,94,0.08),transparent);opacity:0;transition:opacity .35s;pointer-events:none;}
 .cc:hover::after{opacity:1;}
-
 .cc-sev{display:flex;align-items:center;gap:8px;margin-bottom:18px;}
 .cc-pips{display:flex;gap:3px;}
 .cc-pip{width:16px;height:2px;border-radius:2px;background:rgba(244,63,94,0.12);}
 .cc-pip.on{background:var(--rose);}
 .cc-sev-lbl{font-size:0.56rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose);opacity:.75;}
-
 .cc-icon-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
-.cc-icon{
-  width:38px;height:38px;border-radius:8px;
-  background:rgba(244,63,94,0.07);border:1px solid rgba(244,63,94,0.15);
-  display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
-}
+.cc-icon{width:38px;height:38px;border-radius:8px;background:rgba(244,63,94,0.07);border:1px solid rgba(244,63,94,0.15);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
 .cc-tag{font-size:0.56rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--t3);}
-
-.cc-title{
-  font-family:'Instrument Serif',serif;
-  font-size:1.3rem;font-weight:400;letter-spacing:-0.02em;
-  color:var(--t1);line-height:1.1;margin-bottom:6px;
-}
+.cc-title{font-family:'Instrument Serif',serif;font-size:1.3rem;font-weight:400;letter-spacing:-0.02em;color:var(--t1);line-height:1.1;margin-bottom:6px;}
 .cc-sub{font-size:0.63rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--b1);}
 .cc-desc{font-size:0.8rem;color:var(--t2);line-height:1.75;font-weight:300;margin-bottom:16px;}
 .cc-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
 .cc-list li{font-size:0.69rem;color:var(--t3);display:flex;gap:8px;line-height:1.45;}
 .cc-list li::before{content:'↳';color:rgba(244,63,94,0.4);flex-shrink:0;}
-.cc-bgnum{
-  font-family:'Instrument Serif',serif;
-  font-size:8rem;font-weight:400;
-  color:rgba(255,255,255,0.018);
-  position:absolute;bottom:-18px;right:10px;
-  line-height:1;pointer-events:none;
-}
+.cc-bgnum{font-family:'Instrument Serif',serif;font-size:8rem;font-weight:400;color:rgba(255,255,255,0.018);position:absolute;bottom:-18px;right:10px;line-height:1;pointer-events:none;}
 .cc:hover .cc-bgnum{color:rgba(244,63,94,0.05);}
-
-/* Resolve strip */
-.ch-resolve{
-  margin-top:1px;
-  background:rgba(79,70,229,0.07);
-  border:1px solid rgba(79,70,229,0.18);
-  border-top:none;border-radius:0 0 16px 16px;
-  padding:22px 28px;
-  display:flex;align-items:center;gap:14px;
-}
-.chr-pulse{
-  width:8px;height:8px;border-radius:50%;flex-shrink:0;
-  background:var(--indigo);
-  box-shadow:0 0 12px var(--indigo);
-  animation:chrP 2.5s ease-in-out infinite;
-}
+.ch-resolve{margin-top:1px;background:rgba(79,70,229,0.07);border:1px solid rgba(79,70,229,0.18);border-top:none;border-radius:0 0 16px 16px;padding:22px 28px;display:flex;align-items:center;gap:14px;}
+.chr-pulse{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--indigo);box-shadow:0 0 12px var(--indigo);animation:chrP 2.5s ease-in-out infinite;}
 @keyframes chrP{0%,100%{box-shadow:0 0 12px var(--indigo);}50%{box-shadow:0 0 28px rgba(79,70,229,0.7);}}
 .chr-txt{font-size:0.88rem;color:var(--t2);line-height:1.6;font-weight:300;}
 .chr-txt strong{color:#818cf8;font-weight:600;}
 
-/* ═══════════════════════════
-   CTA / COMING SOON
-═══════════════════════════ */
-.cta-wrap{
-  position:relative;overflow:hidden;
-  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
-  background-size:400%;
-  animation:ctaBG 15s ease-in-out infinite alternate;
-}
-@keyframes ctaBG{
-  0%{background-position:0% 50%;}
-  100%{background-position:100% 50%;}
-}
-
-/* Luminous orbs inside CTA */
+/* CTA */
+.cta-wrap{position:relative;overflow:hidden;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);background-size:400%;animation:ctaBG 15s ease-in-out infinite alternate;}
+@keyframes ctaBG{0%{background-position:0% 50%;}100%{background-position:100% 50%;}}
 .cta-orb1{position:absolute;width:600px;height:600px;border-radius:50%;top:-200px;left:-100px;background:radial-gradient(circle,rgba(124,58,237,0.2),transparent 70%);filter:blur(60px);animation:orbDrift1 15s ease-in-out infinite alternate;pointer-events:none;}
 .cta-orb2{position:absolute;width:500px;height:500px;border-radius:50%;bottom:-150px;right:-80px;background:radial-gradient(circle,rgba(6,182,212,0.18),transparent 70%);filter:blur(60px);animation:orbDrift2 12s ease-in-out infinite alternate;pointer-events:none;}
-
-.cta-inner{
-  position:relative;z-index:2;
-  max-width:1280px;margin:0 auto;
-  padding:100px 48px;
-  display:grid;grid-template-columns:1fr 440px;
-  gap:80px;align-items:center;
-}
-
-.cta-left-content{}
+.cta-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:100px 48px;display:grid;grid-template-columns:1fr 440px;gap:80px;align-items:center;}
 .cta-ey{font-size:0.6rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px;}
-.cta-title{
-  font-family:'Instrument Serif',serif;
-  font-size:clamp(2.8rem,6vw,5.5rem);
-  font-weight:400;letter-spacing:-0.04em;
-  line-height:.9;color:var(--t1);
-  margin-bottom:0;
-}
-.cta-title em{
-  font-style:italic;
-  background:linear-gradient(135deg,#a78bfa,#38bdf8,#34d399);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-
+.cta-title{font-family:'Instrument Serif',serif;font-size:clamp(2.8rem,6vw,5.5rem);font-weight:400;letter-spacing:-0.04em;line-height:.9;color:var(--t1);margin-bottom:0;}
+.cta-title em{font-style:italic;background:linear-gradient(135deg,#a78bfa,#38bdf8,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .cta-progress{margin-top:40px;}
-.ctp-lbl{
-  display:flex;justify-content:space-between;
-  font-size:0.6rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;
-  color:rgba(255,255,255,0.3);margin-bottom:10px;
-}
+.ctp-lbl{display:flex;justify-content:space-between;font-size:0.6rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;}
 .ctp-lbl span:last-child{color:var(--cyan);}
 .ctp-track{height:3px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden;}
-.ctp-fill{
-  height:100%;width:0;border-radius:4px;
-  background:linear-gradient(90deg,var(--violet),var(--cyan));
-  box-shadow:0 0 16px rgba(6,182,212,0.4);
-  animation:ctpFill 2.5s .5s cubic-bezier(.16,1,.3,1) forwards;
-}
+.ctp-fill{height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,var(--violet),var(--cyan));box-shadow:0 0 16px rgba(6,182,212,0.4);animation:ctpFill 2.5s .5s cubic-bezier(.16,1,.3,1) forwards;}
 @keyframes ctpFill{from{width:0;}to{width:74%;}}
-
-/* Right glass card */
-.cta-card{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:20px;padding:36px 32px;
-  backdrop-filter:blur(20px);
-  box-shadow:0 40px 80px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.08);
-  display:flex;flex-direction:column;gap:32px;
-}
-
-.cta-body{
-  font-size:0.98rem;font-weight:300;color:var(--t2);
-  line-height:1.82;
-  border-left:2px solid rgba(167,139,250,0.4);
-  padding-left:18px;
-}
-
+.cta-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:36px 32px;backdrop-filter:blur(20px);box-shadow:0 40px 80px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:32px;}
+.cta-body{font-size:0.98rem;font-weight:300;color:var(--t2);line-height:1.82;border-left:2px solid rgba(167,139,250,0.4);padding-left:18px;}
 .contact-list{display:flex;flex-direction:column;gap:10px;}
-.contact-item{
-  display:flex;align-items:center;gap:14px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:12px;padding:16px 20px;
-  text-decoration:none;
-  transition:background .25s,border-color .25s,transform .25s,box-shadow .25s;
-}
-.contact-item:hover{
-  background:rgba(255,255,255,0.07);
-  border-color:rgba(167,139,250,0.3);
-  transform:translateX(4px);
-  box-shadow:0 0 24px rgba(124,58,237,0.12);
-}
-.ci-icon{
-  width:38px;height:38px;border-radius:10px;
-  background:linear-gradient(135deg,rgba(124,58,237,0.3),rgba(79,70,229,0.2));
-  border:1px solid rgba(124,58,237,0.3);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
+.contact-item{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 20px;text-decoration:none;transition:background .25s,border-color .25s,transform .25s,box-shadow .25s;}
+.contact-item:hover{background:rgba(255,255,255,0.07);border-color:rgba(167,139,250,0.3);transform:translateX(4px);box-shadow:0 0 24px rgba(124,58,237,0.12);}
+.ci-icon{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,rgba(124,58,237,0.3),rgba(79,70,229,0.2));border:1px solid rgba(124,58,237,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .ci-icon svg{width:17px;height:17px;fill:#a78bfa;}
 .ci-info{display:flex;flex-direction:column;gap:3px;}
 .ci-label{font-size:0.56rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--t3);}
 .ci-val{font-size:0.9rem;font-weight:500;color:var(--t1);}
 .contact-item:hover .ci-val{color:#a78bfa;}
 
-/* ═══════════════════════════
-   FOOTER
-═══════════════════════════ */
-footer{
-  background:var(--void);
-  border-top:1px solid var(--b1);
-  padding:20px 48px;
-  display:flex;align-items:center;justify-content:space-between;
-}
+/* FOOTER */
+footer{background:var(--void);border-top:1px solid var(--b1);padding:20px 48px;display:flex;align-items:center;justify-content:space-between;}
 .f-l{font-size:0.58rem;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);}
 .f-r{display:flex;gap:24px;}
 .f-tag{font-size:0.56rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);position:relative;padding-left:14px;}
 .f-tag::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:6px;height:1px;background:var(--violet);}
 
-/* ═══════════════════════════
-   REVEAL SYSTEM
-═══════════════════════════ */
+/* REVEAL */
 .r{opacity:0;transform:translateY(36px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);}
 .r.v{opacity:1;transform:translateY(0);}
 .d1{transition-delay:.06s;}.d2{transition-delay:.13s;}.d3{transition-delay:.2s;}.d4{transition-delay:.27s;}
 .d5{transition-delay:.34s;}.d6{transition-delay:.41s;}
+
+/* ═══════════════════════════════════════════════════
+   PHASE MODAL OVERLAY
+═══════════════════════════════════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(3,4,10,0.88);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  opacity:0;pointer-events:none;
+  transition:opacity .45s cubic-bezier(.16,1,.3,1);
+}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+
+.modal-box{
+  width:100%;max-width:960px;max-height:90vh;
+  background:var(--surface);
+  border:1px solid var(--b2);
+  border-radius:24px;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  box-shadow:0 60px 120px rgba(0,0,0,0.7),inset 0 1px 0 rgba(255,255,255,0.07);
+  transform:translateY(40px) scale(0.97);
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+  position:relative;
+}
+.modal-overlay.open .modal-box{transform:translateY(0) scale(1);}
+
+/* Modal header accent bar */
+.modal-accent{height:3px;width:100%;flex-shrink:0;}
+
+.modal-header{
+  padding:32px 36px 24px;
+  border-bottom:1px solid var(--b1);
+  display:flex;align-items:flex-start;justify-content:space-between;
+  flex-shrink:0;
+  position:relative;
+}
+.modal-header-left{}
+.modal-phase-tag{font-size:0.56rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--t3);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.modal-phase-dot{width:6px;height:6px;border-radius:50%;animation:hbPulse 2s ease-in-out infinite;}
+.modal-title{font-family:'Instrument Serif',serif;font-size:2.4rem;font-weight:400;letter-spacing:-0.03em;line-height:1;color:var(--t1);}
+.modal-subtitle{font-size:0.78rem;color:var(--t2);margin-top:8px;font-weight:300;}
+.modal-close{
+  width:36px;height:36px;border-radius:10px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--b2);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;flex-shrink:0;
+  transition:background .2s,border-color .2s;
+  color:var(--t2);font-size:1.1rem;
+}
+.modal-close:hover{background:rgba(255,255,255,0.1);border-color:var(--b3);color:var(--t1);}
+
+/* Modal body scrollable */
+.modal-body{overflow-y:auto;padding:32px 36px;flex:1;}
+.modal-body::-webkit-scrollbar{width:4px;}
+.modal-body::-webkit-scrollbar-track{background:transparent;}
+.modal-body::-webkit-scrollbar-thumb{background:var(--b2);border-radius:4px;}
+
+/* Objective strip */
+.modal-objective{
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--b1);
+  border-left:3px solid var(--modal-accent-color,var(--violet));
+  border-radius:0 12px 12px 0;
+  padding:16px 20px;
+  margin-bottom:32px;
+  font-size:0.88rem;color:var(--t2);line-height:1.7;font-weight:300;
+}
+.modal-objective strong{color:var(--t1);font-weight:500;}
+
+/* Activities grid */
+.act-section-title{
+  font-size:0.58rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.act-section-title::before{content:'';flex:1;height:1px;background:var(--b1);}
+.act-section-title::after{content:'';flex:1;height:1px;background:var(--b1);}
+
+.activities-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:12px;margin-bottom:36px;
+}
+.act-card{
+  background:rgba(255,255,255,0.025);
+  border:1px solid var(--b1);
+  border-radius:14px;
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+  transition:background .25s,border-color .25s,transform .2s;
+}
+.act-card:hover{background:rgba(255,255,255,0.04);border-color:var(--b2);transform:translateY(-2px);}
+.act-card::before{content:'';position:absolute;inset:0;border-radius:14px;background:var(--act-glow,radial-gradient(circle at top right,rgba(124,58,237,0.06),transparent 60%));pointer-events:none;}
+
+.act-num{
+  font-family:'Instrument Serif',serif;
+  font-size:2rem;font-weight:400;
+  color:rgba(255,255,255,0.06);
+  position:absolute;top:12px;right:16px;
+  line-height:1;
+}
+.act-icon{
+  width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;
+  margin-bottom:12px;
+  border:1px solid rgba(255,255,255,0.06);
+  background:rgba(255,255,255,0.03);
+}
+.act-label{font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--modal-accent-color,var(--violet));margin-bottom:6px;opacity:.8;}
+.act-title{font-size:0.95rem;font-weight:600;color:var(--t1);margin-bottom:8px;letter-spacing:-0.01em;}
+.act-desc{font-size:0.78rem;color:var(--t2);line-height:1.65;font-weight:300;}
+.act-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.act-tag{font-size:0.52rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);background:rgba(255,255,255,0.04);border:1px solid var(--b1);border-radius:100px;padding:3px 10px;}
+
+/* Deliverables */
+.deliverables-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:32px;}
+.deliv-item{
+  background:rgba(255,255,255,0.02);
+  border:1px solid var(--b1);
+  border-radius:10px;
+  padding:14px 16px;
+  display:flex;align-items:flex-start;gap:10px;
+}
+.deliv-check{
+  width:18px;height:18px;border-radius:5px;
+  background:var(--modal-accent-color,var(--violet));
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+  opacity:.7;
+  font-size:0.6rem;
+}
+.deliv-text{font-size:0.75rem;color:var(--t2);line-height:1.5;font-weight:300;}
+
+/* KPI row */
+.kpi-row{display:flex;gap:12px;margin-bottom:32px;}
+.kpi-card{flex:1;background:rgba(255,255,255,0.025);border:1px solid var(--b1);border-radius:12px;padding:16px;text-align:center;}
+.kpi-val{font-family:'Instrument Serif',serif;font-size:1.8rem;font-weight:400;line-height:1;color:var(--modal-accent-color,var(--violet));margin-bottom:4px;}
+.kpi-lbl{font-size:0.56rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);}
+
+/* Tools section */
+.tools-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.tool-chip{
+  font-size:0.62rem;font-weight:500;letter-spacing:0.08em;
+  padding:6px 14px;border-radius:100px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--b2);
+  color:var(--t2);
+  display:flex;align-items:center;gap:6px;
+}
+.tool-chip-dot{width:5px;height:5px;border-radius:50%;background:var(--modal-accent-color,var(--violet));}
+
+/* Nav buttons */
+.modal-footer{
+  padding:20px 36px;
+  border-top:1px solid var(--b1);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+  background:rgba(255,255,255,0.015);
+}
+.modal-nav-btn{
+  display:flex;align-items:center;gap:8px;
+  font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--t2);cursor:pointer;
+  background:none;border:1px solid var(--b2);
+  border-radius:100px;padding:8px 18px;
+  transition:color .2s,border-color .2s,background .2s;
+}
+.modal-nav-btn:hover{color:var(--t1);border-color:var(--b3);background:rgba(255,255,255,0.05);}
+.modal-nav-btn:disabled{opacity:.25;cursor:default;}
+.modal-phase-indicator{display:flex;gap:8px;}
+.mpi-dot{width:8px;height:8px;border-radius:50%;background:var(--b2);transition:background .3s,transform .3s;cursor:pointer;}
+.mpi-dot.active{background:var(--modal-accent-color,var(--violet));transform:scale(1.3);}
+
+/* ═══════════════════════════
+   MODAL PROGRESS INDICATOR
+═══════════════════════════ */
+.modal-progress-strip{
+  padding:0 36px 28px;
+  flex-shrink:0;
+}
+.mps-label{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:0.55rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:10px;
+}
+.mps-label span:last-child{color:var(--modal-progress-color,var(--violet));font-variant-numeric:tabular-nums;}
+.mps-track{
+  height:3px;background:rgba(255,255,255,0.06);
+  border-radius:4px;overflow:hidden;position:relative;
+}
+.mps-fill{
+  height:100%;border-radius:4px;
+  background:var(--modal-progress-gradient,linear-gradient(90deg,var(--violet),var(--cyan)));
+  box-shadow:0 0 12px var(--modal-progress-glow,rgba(124,58,237,0.5));
+  width:0;
+  transition:width 1.2s cubic-bezier(.16,1,.3,1);
+}
+/* Phase journey bar — 4 segments */
+.modal-journey{
+  display:flex;align-items:center;gap:0;
+  margin-bottom:24px;
+}
+.mj-seg{
+  flex:1;height:4px;
+  background:rgba(255,255,255,0.06);
+  position:relative;overflow:hidden;
+}
+.mj-seg:first-child{border-radius:4px 0 0 4px;}
+.mj-seg:last-child{border-radius:0 4px 4px 0;}
+.mj-seg+.mj-seg{margin-left:2px;}
+.mj-fill{
+  position:absolute;inset:0;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .8s cubic-bezier(.16,1,.3,1);
+}
+.mj-seg.done .mj-fill{transform:scaleX(1);}
+.mj-seg.active .mj-fill{transform:scaleX(1);opacity:.6;}
+.mj-label{
+  display:flex;justify-content:space-between;
+  margin-top:8px;
+}
+.mj-lbl{
+  flex:1;font-size:0.5rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--t3);text-align:center;
+}
+.mj-lbl.done,.mj-lbl.active{color:var(--t2);}
+
+/* Activity completion tracker inside modal */
+.act-progress-bar{
+  height:2px;
+  background:rgba(255,255,255,0.06);
+  border-radius:2px;overflow:hidden;
+  margin-top:8px;
+}
+.act-progress-fill{
+  height:100%;width:0;
+  border-radius:2px;
+  background:var(--act-bar-color,var(--violet));
+  transition:width 1s .3s cubic-bezier(.16,1,.3,1);
+}
+
+/* ═══════════════════════════
+   ASSESSMENT SECTION (§5)
+═══════════════════════════ */
+.assess-bg{
+  background:var(--deep);
+  position:relative;
+  border-top:1px solid var(--b1);
+  overflow:hidden;
+}
+.assess-bg::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 50%,rgba(124,58,237,0.07),transparent),
+    radial-gradient(ellipse 50% 60% at 80% 30%,rgba(6,182,212,0.05),transparent);
+}
+
+/* Grid of readiness pillars */
+.readiness-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:48px;
+}
+.rp-card{
+  background:var(--surface);
+  border:1px solid var(--b1);
+  border-radius:16px;
+  padding:24px 20px 28px;
+  position:relative;overflow:hidden;
+  cursor:default;
+  transition:background .3s,transform .25s;
+}
+.rp-card:hover{background:var(--raised);transform:translateY(-3px);}
+.rp-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--rp-grad);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+.rp-card:hover::before{transform:scaleX(1);}
+.rp-icon{font-size:1.5rem;margin-bottom:14px;}
+.rp-label{font-size:0.56rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--t3);margin-bottom:8px;}
+.rp-title{font-family:'Instrument Serif',serif;font-size:1.1rem;font-weight:400;color:var(--t1);margin-bottom:10px;line-height:1.2;}
+.rp-score-track{height:4px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin-bottom:8px;}
+.rp-score-fill{height:100%;border-radius:4px;background:var(--rp-grad);width:0;transition:width 1.4s cubic-bezier(.16,1,.3,1);}
+.rp-score-lbl{display:flex;justify-content:space-between;font-size:0.55rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);}
+.rp-score-val{color:var(--rp-color);}
+
+/* CTA quiz strip */
+.assess-cta{
+  background:rgba(124,58,237,0.07);
+  border:1px solid rgba(124,58,237,0.18);
+  border-radius:20px;
+  padding:36px 40px;
+  display:flex;align-items:center;justify-content:space-between;gap:40px;
+  position:relative;overflow:hidden;
+}
+.assess-cta::before{
+  content:'';position:absolute;inset:-1px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(6,182,212,0.06),transparent 50%);
+  pointer-events:none;
+}
+.assess-cta-left{position:relative;z-index:1;}
+.assess-cta-eyebrow{font-size:0.56rem;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--violet);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.assess-cta-eyebrow::before{content:'';width:16px;height:1px;background:var(--violet);}
+.assess-cta-title{font-family:'Instrument Serif',serif;font-size:1.8rem;font-weight:400;letter-spacing:-0.02em;color:var(--t1);line-height:1.1;margin-bottom:8px;}
+.assess-cta-sub{font-size:0.82rem;color:var(--t2);font-weight:300;line-height:1.6;max-width:480px;}
+.assess-cta-btn{
+  flex-shrink:0;position:relative;z-index:1;
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--violet),var(--indigo));
+  color:#fff;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  padding:14px 28px;border-radius:100px;border:none;cursor:pointer;
+  box-shadow:0 0 32px rgba(124,58,237,0.4),inset 0 1px 0 rgba(255,255,255,0.15);
+  transition:transform .2s,box-shadow .2s;
+}
+.assess-cta-btn:hover{transform:scale(1.04);box-shadow:0 0 48px rgba(124,58,237,0.6),inset 0 1px 0 rgba(255,255,255,0.15);}
+.assess-cta-btn svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;}
+
+/* ═══════════════════════════
+   QUIZ MODAL
+═══════════════════════════ */
+.quiz-overlay{
+  position:fixed;inset:0;z-index:3000;
+  background:rgba(3,4,10,0.92);
+  backdrop-filter:blur(24px) saturate(180%);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s cubic-bezier(.16,1,.3,1);
+}
+.quiz-overlay.open{opacity:1;pointer-events:all;}
+
+.quiz-box{
+  width:100%;max-width:700px;
+  background:var(--surface);
+  border:1px solid var(--b2);
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 60px 120px rgba(0,0,0,0.8),inset 0 1px 0 rgba(255,255,255,0.07);
+  transform:translateY(50px) scale(0.96);
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+  position:relative;
+  max-height:92vh;
+  display:flex;flex-direction:column;
+}
+.quiz-overlay.open .quiz-box{transform:translateY(0) scale(1);}
+
+/* Quiz top bar */
+.quiz-topbar{
+  padding:20px 28px;
+  border-bottom:1px solid var(--b1);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.quiz-title-badge{font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--violet);display:flex;align-items:center;gap:8px;}
+.quiz-close{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t2);font-size:1rem;transition:background .2s;}
+.quiz-close:hover{background:rgba(255,255,255,0.1);color:var(--t1);}
+
+/* Progress */
+.quiz-progress{padding:16px 28px 0;flex-shrink:0;}
+.qp-top{display:flex;justify-content:space-between;font-size:0.55rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-bottom:8px;}
+.qp-top span:last-child{color:var(--violet);}
+.qp-track{height:3px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;}
+.qp-fill{height:100%;background:linear-gradient(90deg,var(--violet),var(--cyan));border-radius:4px;width:0;transition:width .6s cubic-bezier(.16,1,.3,1);box-shadow:0 0 10px rgba(124,58,237,0.4);}
+/* step dots */
+.qp-dots{display:flex;gap:6px;margin-top:12px;}
+.qp-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  transition:background .3s,transform .3s,width .3s;
+}
+.qp-dot.done{background:var(--violet);}
+.qp-dot.active{background:var(--cyan);transform:scale(1.5);width:18px;border-radius:3px;}
+
+/* Quiz content area */
+.quiz-content{
+  padding:28px;
+  overflow-y:auto;
+  flex:1;
+}
+.quiz-content::-webkit-scrollbar{width:4px;}
+.quiz-content::-webkit-scrollbar-track{background:transparent;}
+.quiz-content::-webkit-scrollbar-thumb{background:var(--b2);border-radius:4px;}
+
+/* Question */
+.q-step{display:none;}
+.q-step.active{display:block;animation:qFadeIn .4s ease forwards;}
+@keyframes qFadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+.q-domain{font-size:0.54rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--t3);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.q-domain-dot{width:5px;height:5px;border-radius:50%;background:var(--violet);}
+.q-text{font-family:'Instrument Serif',serif;font-size:1.4rem;font-weight:400;letter-spacing:-0.02em;color:var(--t1);line-height:1.3;margin-bottom:24px;}
+
+/* Options */
+.q-options{display:flex;flex-direction:column;gap:10px;}
+.q-opt{
+  display:flex;align-items:flex-start;gap:14px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--b1);
+  border-radius:12px;
+  padding:14px 18px;
+  cursor:pointer;
+  transition:background .2s,border-color .2s,transform .15s;
+  position:relative;
+  overflow:hidden;
+}
+.q-opt:hover{background:rgba(255,255,255,0.06);border-color:var(--b2);transform:translateX(3px);}
+.q-opt.selected{
+  background:rgba(124,58,237,0.1);
+  border-color:rgba(124,58,237,0.4);
+}
+.q-opt.selected::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--violet),var(--indigo));
+}
+.q-opt-letter{
+  width:24px;height:24px;border-radius:6px;
+  background:rgba(255,255,255,0.06);border:1px solid var(--b2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.6rem;font-weight:700;letter-spacing:0.06em;
+  color:var(--t3);flex-shrink:0;margin-top:1px;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.q-opt.selected .q-opt-letter{background:var(--violet);color:#fff;border-color:var(--violet);}
+.q-opt-content{}
+.q-opt-main{font-size:0.88rem;font-weight:500;color:var(--t1);margin-bottom:3px;}
+.q-opt-sub{font-size:0.72rem;color:var(--t3);font-weight:300;line-height:1.45;}
+
+/* Quiz footer */
+.quiz-footer{
+  padding:16px 28px;
+  border-top:1px solid var(--b1);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+  background:rgba(255,255,255,0.01);
+}
+.quiz-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  padding:10px 22px;border-radius:100px;border:1px solid var(--b2);
+  cursor:pointer;background:none;color:var(--t2);
+  transition:all .2s;
+}
+.quiz-btn:hover{background:rgba(255,255,255,0.06);border-color:var(--b3);color:var(--t1);}
+.quiz-btn.primary{
+  background:linear-gradient(135deg,var(--violet),var(--indigo));
+  border:none;color:#fff;
+  box-shadow:0 0 20px rgba(124,58,237,0.3);
+}
+.quiz-btn.primary:hover{box-shadow:0 0 32px rgba(124,58,237,0.5);transform:translateY(-1px);}
+.quiz-btn:disabled{opacity:.25;cursor:default;pointer-events:none;}
+
+/* ── RESULTS PANEL ── */
+.quiz-results{display:none;animation:qFadeIn .5s ease forwards;}
+.qr-header{text-align:center;padding:8px 0 28px;}
+.qr-score-ring{
+  width:110px;height:110px;
+  margin:0 auto 20px;
+  position:relative;
+}
+.qr-ring-svg{width:110px;height:110px;transform:rotate(-90deg);}
+.qr-ring-bg{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:6;}
+.qr-ring-fg{fill:none;stroke-width:6;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transition:stroke-dashoffset 1.5s cubic-bezier(.16,1,.3,1);}
+.qr-score-num{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:'Instrument Serif',serif;font-size:1.8rem;font-weight:400;
+}
+.qr-score-pct{font-size:0.5rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3);margin-top:2px;}
+.qr-title{font-family:'Instrument Serif',serif;font-size:1.6rem;font-weight:400;color:var(--t1);margin-bottom:6px;}
+.qr-tagline{font-size:0.82rem;color:var(--t2);font-weight:300;line-height:1.6;max-width:460px;margin:0 auto;}
+
+/* Dimension bars */
+.qr-dims{display:flex;flex-direction:column;gap:12px;margin:24px 0;}
+.qr-dim{display:flex;align-items:center;gap:14px;}
+.qr-dim-lbl{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--t2);width:130px;flex-shrink:0;text-align:right;}
+.qr-dim-track{flex:1;height:5px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;}
+.qr-dim-fill{height:100%;border-radius:4px;width:0;transition:width 1.2s cubic-bezier(.16,1,.3,1);}
+.qr-dim-pct{font-size:0.62rem;font-weight:700;color:var(--t2);width:36px;text-align:right;flex-shrink:0;}
+
+/* Recommended phase */
+.qr-rec{
+  background:rgba(124,58,237,0.07);
+  border:1px solid rgba(124,58,237,0.2);
+  border-radius:16px;
+  padding:20px 24px;
+  display:flex;align-items:center;gap:18px;
+  margin-top:20px;
+}
+.qr-rec-icon{font-size:1.6rem;flex-shrink:0;}
+.qr-rec-label{font-size:0.54rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--violet);margin-bottom:4px;}
+.qr-rec-title{font-size:1rem;font-weight:600;color:var(--t1);margin-bottom:4px;}
+.qr-rec-desc{font-size:0.76rem;color:var(--t2);font-weight:300;line-height:1.55;}
+
+.nav-assess-link:hover{background:rgba(124,58,237,0.22)!important;border-color:rgba(167,139,250,0.6)!important;box-shadow:0 0 18px rgba(124,58,237,0.25)!important;color:#c4b5fd!important;}
+/* Section highlight flash when navigated to via anchor */
+.assess-bg:target{animation:sectionFlash .9s ease forwards;}
+@keyframes sectionFlash{0%{outline:2px solid rgba(124,58,237,0.5);}100%{outline:2px solid transparent;}}
 
 /* ═══════════════════════════
    RESPONSIVE
@@ -689,16 +761,27 @@ footer{
   .chal-grid{grid-template-columns:1fr 1fr;}
   .cta-inner{grid-template-columns:1fr;gap:48px;}
   .cta-card{max-width:480px;}
+  .activities-grid{grid-template-columns:1fr;}
+  .deliverables-grid{grid-template-columns:1fr 1fr;}
+  .readiness-grid{grid-template-columns:1fr 1fr;}
+  .assess-cta{flex-direction:column;align-items:flex-start;}
 }
 @media(max-width:720px){
   header{padding:0 20px;}
   .nav-right .nav-chip:not(.hi),.nav-sep,.nav-url{display:none;}
   .hero,.section,.cta-inner{padding-left:20px;padding-right:20px;}
-  .phases-grid,.chal-grid{grid-template-columns:1fr;}
+  .phases-grid,.chal-grid,.readiness-grid{grid-template-columns:1fr;}
   footer{padding:16px 20px;flex-direction:column;gap:12px;text-align:center;}
   .cta-inner{padding:64px 20px;}
   .ch-hdr{flex-direction:column;}
   .ch-stat{text-align:left;}
+  .modal-header{padding:24px 20px 18px;}
+  .modal-body{padding:20px;}
+  .modal-footer{padding:14px 20px;}
+  .modal-progress-strip{padding:0 20px 20px;}
+  .kpi-row{flex-wrap:wrap;}
+  .deliverables-grid{grid-template-columns:1fr;}
+  .qr-dim-lbl{width:90px;font-size:0.55rem;}
 }
 </style>
 </head>
@@ -718,6 +801,10 @@ footer{
   <div class="nav-right">
     <div class="nav-chip hi">AI</div>
     <div class="nav-chip">Digital Transformation</div>
+    <a class="nav-chip nav-assess-link" href="#assessment" style="text-decoration:none;display:flex;align-items:center;gap:7px;background:rgba(124,58,237,0.12);border-color:rgba(124,58,237,0.35);color:#a78bfa;font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:5px 14px;border-radius:100px;border:1px solid rgba(124,58,237,0.35);position:relative;overflow:hidden;transition:background .25s,border-color .25s,box-shadow .25s;">
+      <span style="width:5px;height:5px;border-radius:50%;background:#a78bfa;display:inline-block;box-shadow:0 0 7px #a78bfa;animation:hbPulse 2s ease-in-out infinite;flex-shrink:0;"></span>
+      Measure Digital Readiness
+    </a>
     <a class="nav-chip" href="#contact" style="text-decoration:none;background:rgba(6,182,212,0.12);border-color:rgba(6,182,212,0.35);color:var(--cyan);display:flex;align-items:center;gap:6px;">
       <span style="width:5px;height:5px;border-radius:50%;background:var(--cyan);display:inline-block;box-shadow:0 0 6px var(--cyan);"></span>Contact
     </a>
@@ -734,23 +821,28 @@ footer{
   <div class="orb orb-4"></div>
   <div class="hero-grid"></div>
   <div class="hero-vignette"></div>
-
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-badge">
         <div class="hb-dot"></div>
         <span class="hb-text">Platform under development</span>
       </div>
-
       <h1 class="hero-h1">
         <span class="h1-line"><span class="h1-word h1-white">Build <span class="h1-grad">Resilient</span></span></span>
         <span class="h1-line"><span class="h1-word h1-outline">AI-Ready</span></span>
         <span class="h1-line"><span class="h1-word">Digital <span class="h1-grad">Organizations</span></span></span>
       </h1>
-
       <p class="hero-sub">Uniting domain expertise, process intelligence, and IT capability to craft enterprise blueprints that accelerate every phase of digital transformation — driving operational efficiency and strategic growth.</p>
+      <div style="margin-top:36px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s ease forwards;">
+        <a href="#assessment" style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:13px 26px;border-radius:100px;text-decoration:none;box-shadow:0 0 28px rgba(124,58,237,0.45),inset 0 1px 0 rgba(255,255,255,0.15);transition:transform .2s,box-shadow .2s;" onmouseenter="this.style.transform='scale(1.04)';this.style.boxShadow='0 0 44px rgba(124,58,237,0.65),inset 0 1px 0 rgba(255,255,255,0.15)'" onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='0 0 28px rgba(124,58,237,0.45),inset 0 1px 0 rgba(255,255,255,0.15)'">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Measure Digital Readiness
+        </a>
+        <a href="#phases" style="display:inline-flex;align-items:center;gap:8px;color:var(--t2);font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:1px solid var(--b2);padding:12px 22px;border-radius:100px;transition:color .2s,border-color .2s,background .2s;" onmouseenter="this.style.color='var(--t1)';this.style.borderColor='var(--b3)';this.style.background='rgba(255,255,255,0.05)'" onmouseleave="this.style.color='var(--t2)';this.style.borderColor='var(--b2)';this.style.background='transparent'">
+          Explore Framework ↓
+        </a>
+      </div>
     </div>
-
     <div class="hero-panel">
       <div class="panel-eyebrow">Transformation failure rate</div>
       <div class="panel-stat">70%</div>
@@ -761,7 +853,6 @@ footer{
       </div>
     </div>
   </div>
-
   <div class="hero-scroll">
     <span class="hs-text">Scroll</span>
     <div class="hs-arrow"></div>
@@ -797,42 +888,61 @@ footer{
 </div>
 
 <!-- ══ PHASES ══ -->
-<div class="phases-bg">
+<div class="phases-bg" id="phases">
   <div class="section">
     <div class="s-eyebrow r">Our Four-Phase Framework</div>
     <div class="s-title r d1">The Path to<br><em>Digital Readiness</em></div>
+    <div style="font-size:0.78rem;color:var(--t3);margin-bottom:40px;margin-top:-36px;" class="r d2">
+      ↗ Click any phase below to explore detailed activities, deliverables, and success metrics
+    </div>
 
     <div class="phases-grid">
-      <div class="ph-card r d1">
+      <div class="ph-card r d1" data-phase="0" onclick="openModal(0)">
         <div class="ph-num-badge">01</div>
         <div class="ph-step">Phase 01 — Organise</div>
         <div class="ph-title">AS IS</div>
         <div class="ph-kw">Know your current state</div>
         <div class="ph-desc">Collect enterprise processes, application utilisation, data and integration points. Build business capability models across all functions and departments.</div>
+        <div class="ph-click-hint">
+          <svg viewBox="0 0 16 16"><path d="M8 1l7 7-7 7M1 8h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          Explore Activities
+        </div>
         <div class="ph-bg-num">01</div>
       </div>
-      <div class="ph-card r d2">
+      <div class="ph-card r d2" data-phase="1" onclick="openModal(1)">
         <div class="ph-num-badge">02</div>
         <div class="ph-step">Phase 02 — Optimise</div>
         <div class="ph-title">TO BE</div>
         <div class="ph-kw">Define the future blueprint</div>
         <div class="ph-desc">Identify and eliminate non-value-added activities through value stream mapping and lean manufacturing. Embed mistake-proofing to simplify and streamline for greater efficiency.</div>
+        <div class="ph-click-hint">
+          <svg viewBox="0 0 16 16"><path d="M8 1l7 7-7 7M1 8h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          Explore Activities
+        </div>
         <div class="ph-bg-num">02</div>
       </div>
-      <div class="ph-card r d3">
+      <div class="ph-card r d3" data-phase="2" onclick="openModal(2)">
         <div class="ph-num-badge">03</div>
         <div class="ph-step">Phase 03 — Strategise</div>
         <div class="ph-title">FOCUS</div>
         <div class="ph-kw">Prioritize what matters most</div>
         <div class="ph-desc">Align business and IT strategy, identify intelligent automation opportunities, and prioritize digital transformation initiatives and investments with precision.</div>
+        <div class="ph-click-hint">
+          <svg viewBox="0 0 16 16"><path d="M8 1l7 7-7 7M1 8h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          Explore Activities
+        </div>
         <div class="ph-bg-num">03</div>
       </div>
-      <div class="ph-card r d4">
+      <div class="ph-card r d4" data-phase="3" onclick="openModal(3)">
         <div class="ph-num-badge">04</div>
         <div class="ph-step">Phase 04 — Modernise</div>
         <div class="ph-title">TRANSFORM</div>
         <div class="ph-kw">Drive digital implementation</div>
         <div class="ph-desc">Collaborate with business teams and partner with IT to drive implementation — defining scope, requirements, test scenarios, execution and end-user training.</div>
+        <div class="ph-click-hint">
+          <svg viewBox="0 0 16 16"><path d="M8 1l7 7-7 7M1 8h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          Explore Activities
+        </div>
         <div class="ph-bg-num">04</div>
       </div>
     </div>
@@ -859,7 +969,6 @@ footer{
     </div>
 
     <div class="chal-grid">
-
       <div class="cc r d1">
         <div class="cc-sev"><div class="cc-pips"><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div></div><span class="cc-sev-lbl">Critical</span></div>
         <div class="cc-icon-row"><div class="cc-icon">📋</div><span class="cc-tag">Challenge — 01</span></div>
@@ -874,7 +983,6 @@ footer{
         </ul>
         <div class="cc-bgnum">01</div>
       </div>
-
       <div class="cc r d2">
         <div class="cc-sev"><div class="cc-pips"><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip"></div></div><span class="cc-sev-lbl">High</span></div>
         <div class="cc-icon-row"><div class="cc-icon">🗄️</div><span class="cc-tag">Challenge — 02</span></div>
@@ -889,7 +997,6 @@ footer{
         </ul>
         <div class="cc-bgnum">02</div>
       </div>
-
       <div class="cc r d3">
         <div class="cc-sev"><div class="cc-pips"><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip"></div></div><span class="cc-sev-lbl">High</span></div>
         <div class="cc-icon-row"><div class="cc-icon">🎯</div><span class="cc-tag">Challenge — 03</span></div>
@@ -904,7 +1011,6 @@ footer{
         </ul>
         <div class="cc-bgnum">03</div>
       </div>
-
       <div class="cc r d1">
         <div class="cc-sev"><div class="cc-pips"><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip"></div><div class="cc-pip"></div></div><span class="cc-sev-lbl">Significant</span></div>
         <div class="cc-icon-row"><div class="cc-icon">🔗</div><span class="cc-tag">Challenge — 04</span></div>
@@ -918,7 +1024,6 @@ footer{
         </ul>
         <div class="cc-bgnum">04</div>
       </div>
-
       <div class="cc r d2">
         <div class="cc-sev"><div class="cc-pips"><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip"></div><div class="cc-pip"></div></div><span class="cc-sev-lbl">Significant</span></div>
         <div class="cc-icon-row"><div class="cc-icon">⚙️</div><span class="cc-tag">Challenge — 05</span></div>
@@ -932,7 +1037,6 @@ footer{
         </ul>
         <div class="cc-bgnum">05</div>
       </div>
-
       <div class="cc r d3">
         <div class="cc-sev"><div class="cc-pips"><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip on"></div><div class="cc-pip"></div><div class="cc-pip"></div></div><span class="cc-sev-lbl">Significant</span></div>
         <div class="cc-icon-row"><div class="cc-icon">🧭</div><span class="cc-tag">Challenge — 06</span></div>
@@ -946,12 +1050,81 @@ footer{
         </ul>
         <div class="cc-bgnum">06</div>
       </div>
-
     </div>
 
     <div class="ch-resolve r">
       <div class="chr-pulse"></div>
       <div class="chr-txt"><strong>EnterpriseIQ addresses every one of these failure points</strong> — systematically, through our four-phase Organise → Optimise → Strategise → Modernise framework, ensuring your transformation is built on documented reality, not assumption.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 5 — DIGITAL READINESS ASSESSMENT ══ -->
+<div class="assess-bg" id="assessment">
+  <div class="section">
+    <div class="s-eyebrow r">Section 05 — Self-Assessment</div>
+    <div class="s-title r d1">Measure <em>Digital Readiness</em></div>
+    <p style="font-size:0.88rem;color:var(--t2);font-weight:300;line-height:1.75;max-width:600px;margin-bottom:56px;margin-top:-40px;" class="r d2">
+      Across six critical readiness dimensions, see how your enterprise stacks up — and discover which phase of the EnterpriseIQ framework should be your starting point.
+    </p>
+
+    <!-- Readiness pillar cards with animated bars -->
+    <div class="readiness-grid">
+      <div class="rp-card r d1" style="--rp-grad:linear-gradient(90deg,#7c3aed,#4f46e5);--rp-color:#a78bfa;">
+        <div class="rp-icon">🗺️</div>
+        <div class="rp-label">Dimension 01</div>
+        <div class="rp-title">Process Documentation</div>
+        <div class="rp-score-track"><div class="rp-score-fill" data-pct="18"></div></div>
+        <div class="rp-score-lbl"><span>Industry avg.</span><span class="rp-score-val">18% documented</span></div>
+      </div>
+      <div class="rp-card r d2" style="--rp-grad:linear-gradient(90deg,#06b6d4,#0d9488);--rp-color:#38bdf8;">
+        <div class="rp-icon">🗄️</div>
+        <div class="rp-label">Dimension 02</div>
+        <div class="rp-title">Data Governance Maturity</div>
+        <div class="rp-score-track"><div class="rp-score-fill" data-pct="24"></div></div>
+        <div class="rp-score-lbl"><span>Industry avg.</span><span class="rp-score-val">24% mature</span></div>
+      </div>
+      <div class="rp-card r d3" style="--rp-grad:linear-gradient(90deg,#f59e0b,#ef4444);--rp-color:#fbbf24;">
+        <div class="rp-icon">🎯</div>
+        <div class="rp-label">Dimension 03</div>
+        <div class="rp-title">IT–Business Alignment</div>
+        <div class="rp-score-track"><div class="rp-score-fill" data-pct="31"></div></div>
+        <div class="rp-score-lbl"><span>Industry avg.</span><span class="rp-score-val">31% aligned</span></div>
+      </div>
+      <div class="rp-card r d4" style="--rp-grad:linear-gradient(90deg,#84cc16,#06b6d4);--rp-color:#a3e635;">
+        <div class="rp-icon">🤖</div>
+        <div class="rp-label">Dimension 04</div>
+        <div class="rp-title">AI & Automation Readiness</div>
+        <div class="rp-score-track"><div class="rp-score-fill" data-pct="12"></div></div>
+        <div class="rp-score-lbl"><span>Industry avg.</span><span class="rp-score-val">12% ready</span></div>
+      </div>
+      <div class="rp-card r d5" style="--rp-grad:linear-gradient(90deg,#f43f5e,#fb923c);--rp-color:#fb7185;">
+        <div class="rp-icon">⚙️</div>
+        <div class="rp-label">Dimension 05</div>
+        <div class="rp-title">Value Stream Clarity</div>
+        <div class="rp-score-track"><div class="rp-score-fill" data-pct="22"></div></div>
+        <div class="rp-score-lbl"><span>Industry avg.</span><span class="rp-score-val">22% clear</span></div>
+      </div>
+      <div class="rp-card r d6" style="--rp-grad:linear-gradient(90deg,#818cf8,#c084fc);--rp-color:#c084fc;">
+        <div class="rp-icon">🏗️</div>
+        <div class="rp-label">Dimension 06</div>
+        <div class="rp-title">Change Management Capability</div>
+        <div class="rp-score-track"><div class="rp-score-fill" data-pct="35"></div></div>
+        <div class="rp-score-lbl"><span>Industry avg.</span><span class="rp-score-val">35% capable</span></div>
+      </div>
+    </div>
+
+    <!-- Quiz CTA -->
+    <div class="assess-cta r">
+      <div class="assess-cta-left">
+        <div class="assess-cta-eyebrow">Free Assessment — 12 Questions · 4 Minutes</div>
+        <div class="assess-cta-title">Where does your enterprise<br>actually stand?</div>
+        <div class="assess-cta-sub">Answer 12 targeted questions across all six readiness dimensions. Receive an instant diagnostic score, identify your weakest pillar, and get a personalised recommendation for which EnterpriseIQ phase to begin with.</div>
+      </div>
+      <button class="assess-cta-btn" onclick="openQuiz()">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Take the Assessment
+      </button>
     </div>
   </div>
 </div>
@@ -995,20 +1168,844 @@ footer{
   </div>
 </footer>
 
+<!-- ═══════════════════════════════════════════════════
+     PHASE DETAIL MODAL
+═══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="phaseModal" onclick="handleOverlayClick(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-accent" id="modalAccent"></div>
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-phase-tag">
+          <div class="modal-phase-dot" id="modalDot"></div>
+          <span id="modalTag"></span>
+        </div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-subtitle" id="modalSubtitle"></div>
+      </div>
+      <div class="modal-close" onclick="closeModal()" title="Close">✕</div>
+    </div>
+    <!-- Journey progress bar -->
+    <div class="modal-progress-strip" id="modalProgressStrip">
+      <div class="modal-journey" id="modalJourney"></div>
+      <div class="mj-label" id="modalJourneyLabels"></div>
+      <div style="height:14px;"></div>
+      <div class="mps-label">
+        <span id="mpsPhaseLabel">Phase Completion Depth</span>
+        <span id="mpsPercent" style="color:var(--violet)">—</span>
+      </div>
+      <div class="mps-track"><div class="mps-fill" id="mpsFill"></div></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer">
+      <button class="modal-nav-btn" id="prevBtn" onclick="navigateModal(-1)">← Previous Phase</button>
+      <div class="modal-phase-indicator" id="phaseIndicator"></div>
+      <button class="modal-nav-btn" id="nextBtn" onclick="navigateModal(1)">Next Phase →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ QUIZ MODAL ══ -->
+<div class="quiz-overlay" id="quizOverlay" onclick="handleQuizOverlay(event)">
+  <div class="quiz-box">
+    <!-- Top bar -->
+    <div class="quiz-topbar">
+      <div class="quiz-title-badge">
+        <div class="hb-dot" style="width:6px;height:6px;background:var(--violet);box-shadow:0 0 8px var(--violet);animation:hbPulse 2s infinite;border-radius:50%;flex-shrink:0;"></div>
+        Digital Readiness Assessment
+      </div>
+      <div class="quiz-close" onclick="closeQuiz()">✕</div>
+    </div>
+    <!-- Progress -->
+    <div class="quiz-progress" id="quizProgress">
+      <div class="qp-top">
+        <span id="qpLabel">Question 1 of 12</span>
+        <span id="qpPct" style="color:var(--violet)">0%</span>
+      </div>
+      <div class="qp-track"><div class="qp-fill" id="qpFill"></div></div>
+      <div class="qp-dots" id="qpDots"></div>
+    </div>
+    <!-- Content -->
+    <div class="quiz-content" id="quizContent"></div>
+    <!-- Footer -->
+    <div class="quiz-footer">
+      <button class="quiz-btn" id="qBackBtn" onclick="quizBack()">← Back</button>
+      <button class="quiz-btn primary" id="qNextBtn" onclick="quizNext()" disabled>Continue →</button>
+    </div>
+  </div>
+</div>
+
 <script>
-/* Cursor */
+/* ── Cursor ── */
 const cur=document.getElementById('cur'),curo=document.getElementById('cur-o');
 let mx=0,my=0,ox=0,oy=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
 (function loop(){ox+=(mx-ox)*.1;oy+=(my-oy)*.1;curo.style.left=ox+'px';curo.style.top=oy+'px';requestAnimationFrame(loop);})();
-document.querySelectorAll('a,button,.ph-card,.cc').forEach(el=>{
+document.querySelectorAll('a,button,.ph-card,.cc,.modal-nav-btn,.modal-close').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.style.width='14px';cur.style.height='14px';curo.style.width='48px';curo.style.height='48px';curo.style.borderColor='rgba(124,58,237,0.8)';curo.style.opacity='.5';});
   el.addEventListener('mouseleave',()=>{cur.style.width='6px';cur.style.height='6px';curo.style.width='32px';curo.style.height='32px';curo.style.borderColor='rgba(124,58,237,0.5)';curo.style.opacity='.6';});
 });
 
-/* Scroll reveal */
+/* ── Scroll reveal ── */
 const io=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target);}});},{threshold:.07});
 document.querySelectorAll('.r').forEach(el=>io.observe(el));
+
+/* ══════════════════════════════════════════════════
+   PHASE DATA — DETAILED ACTIVITIES
+══════════════════════════════════════════════════ */
+const phases = [
+  {
+    num: "01",
+    tag: "Phase 01 — Organise",
+    title: "AS IS",
+    subtitle: "Documenting the enterprise as it truly exists today",
+    color: "#7c3aed",
+    color2: "#4f46e5",
+    gradient: "linear-gradient(90deg,#7c3aed,#4f46e5)",
+    glow: "radial-gradient(circle at top right,rgba(124,58,237,0.09),transparent 60%)",
+    dotColor: "#a78bfa",
+    objective: "<strong>Core Objective:</strong> Establish a complete, verified picture of the enterprise's current operating state — people, processes, data, applications, and integrations — so transformation is grounded in documented reality, not assumption.",
+    kpis: [
+      {val:"100%", lbl:"Processes Documented"},
+      {val:"90%+", lbl:"Stakeholder Coverage"},
+      {val:"<4wk", lbl:"Avg. Completion Time"},
+      {val:"0", lbl:"Undocumented Gaps"}
+    ],
+    activities: [
+      {
+        icon:"🗺️", label:"Process Discovery", title:"End-to-End Process Mapping",
+        desc:"Conduct structured discovery workshops with functional leads and frontline staff. Map every process variant — standard, exception, and seasonal — using BPMN notation. Capture entry criteria, outputs, decision points, escalation paths, and SLA targets.",
+        tags:["BPMN","Workshops","Process Variants","SLA Mapping"]
+      },
+      {
+        icon:"🏢", label:"Capability Modelling", title:"Business Capability Architecture",
+        desc:"Build a comprehensive Business Capability Model across all departments: Finance, HR, Supply Chain, Sales, Operations, IT. Identify capability owners, maturity levels (1–5 scale), and strategic importance ratings. Link capabilities to underlying processes and systems.",
+        tags:["BCM","Maturity Assessment","Org Structure","RACI"]
+      },
+      {
+        icon:"💾", label:"Application Portfolio", title:"Application Utilisation Audit",
+        desc:"Catalogue every application in use — licensed, shadow IT, and legacy. Map usage frequency, business function served, user base size, integration dependencies, licensing costs, and technical debt level. Identify redundancy and orphaned systems.",
+        tags:["APM","Shadow IT","License Review","Integration Map"]
+      },
+      {
+        icon:"🔌", label:"Integration Analysis", title:"Data & Integration Point Mapping",
+        desc:"Document all data flows between systems, manual handoffs, file transfers, API connections, and ETL pipelines. Rate each integration on reliability, latency, and business criticality. Identify brittle point-to-point connections that block scalability.",
+        tags:["Integration Map","API Inventory","Data Lineage","ETL Audit"]
+      },
+      {
+        icon:"👥", label:"Stakeholder Engagement", title:"Knowledge Elicitation & Interviews",
+        desc:"Conduct structured stakeholder interviews at every level — C-Suite, department heads, team leads, and end users. Extract tribal knowledge, workarounds, pain points, and informal processes not visible in documentation. Record, validate, and cross-reference findings.",
+        tags:["Interviews","Tribal Knowledge","Pain Points","Validation"]
+      },
+      {
+        icon:"📊", label:"Data Landscape", title:"Data Source & Quality Assessment",
+        desc:"Identify all data sources, master data entities, data owners, and stewards. Assess data quality dimensions: completeness, accuracy, consistency, timeliness, and uniqueness. Flag unstructured data stores and undocumented data flows that pose AI readiness risks.",
+        tags:["Master Data","Data Quality","Stewardship","AI Readiness"]
+      }
+    ],
+    deliverables: [
+      "Process Catalogue (all functions)",
+      "Business Capability Model",
+      "Application Portfolio Register",
+      "Integration Dependency Map",
+      "Data Dictionary & Source Register",
+      "Stakeholder Interview Transcripts",
+      "Tribal Knowledge Repository",
+      "AS IS Process Maps (BPMN)",
+      "System Landscape Diagram"
+    ],
+    tools: ["Lucidchart / Miro","Confluence / SharePoint","ADOIT / LeanIX","MS Visio","Jira / DevOps","Survey Tools","Interview Guides","Excel / Google Sheets"]
+  },
+  {
+    num: "02",
+    tag: "Phase 02 — Optimise",
+    title: "TO BE",
+    subtitle: "Designing the lean, intelligent future-state blueprint",
+    color: "#06b6d4",
+    color2: "#0d9488",
+    gradient: "linear-gradient(90deg,#06b6d4,#0d9488)",
+    glow: "radial-gradient(circle at top right,rgba(6,182,212,0.08),transparent 60%)",
+    dotColor: "#38bdf8",
+    objective: "<strong>Core Objective:</strong> Transform the documented AS IS reality into an optimised TO BE blueprint — eliminating waste, simplifying complexity, and designing processes that are AI-ready, automation-friendly, and operationally excellent.",
+    kpis: [
+      {val:"30–50%", lbl:"Waste Eliminated"},
+      {val:"20%+", lbl:"Cycle Time Reduction"},
+      {val:"≥3", lbl:"Poka-Yoke Controls/Process"},
+      {val:"100%", lbl:"Future Flows Mapped"}
+    ],
+    activities: [
+      {
+        icon:"🔍", label:"Waste Identification", title:"Value Stream Mapping & Analysis",
+        desc:"Conduct Value Stream Mapping (VSM) workshops for each core value stream. Identify the 8 wastes of Lean (TIMWOODS): Transportation, Inventory, Motion, Waiting, Overproduction, Over-processing, Defects, Skills. Quantify waste impact in time, cost, and error rate.",
+        tags:["VSM","Lean Methodology","8 Wastes","Time Study"]
+      },
+      {
+        icon:"✅", label:"Error-Proofing", title:"Poka-Yoke & Mistake-Proofing Design",
+        desc:"Apply Poka-Yoke principles to eliminate defect opportunities. Design mandatory validation checkpoints, system-enforced sequencing, automated alerts, and dual-approval gates at high-risk process nodes. Create error-proof handoffs between teams and systems.",
+        tags:["Poka-Yoke","Validation Gates","Error Prevention","Control Design"]
+      },
+      {
+        icon:"🔄", label:"Process Redesign", title:"Future-State Process Engineering",
+        desc:"Co-design optimised TO BE processes with business owners. Eliminate redundant steps, merge duplicated activities, automate rule-based decisions, and redesign human touchpoints for cognitive efficiency. Ensure processes are modular, testable, and AI-trainable.",
+        tags:["TO BE Design","Process Simplification","Co-design Workshops","Modular Flows"]
+      },
+      {
+        icon:"📐", label:"Standardisation", title:"SOP & Work Instruction Development",
+        desc:"Create standardised operating procedures, decision trees, and role-based work instructions for all redesigned processes. Apply consistent templates, naming conventions, and version control. Build a living process repository accessible to all stakeholders.",
+        tags:["SOP Creation","Standard Work","Documentation","Version Control"]
+      },
+      {
+        icon:"🤖", label:"Automation Readiness", title:"RPA & AI Candidate Identification",
+        desc:"Analyse redesigned processes against automation criteria: volume, rule-based logic, digital inputs, and frequency. Classify activities by automation type — RPA, AI/ML inference, workflow automation, or human-in-the-loop. Estimate effort-to-value ratio for each candidate.",
+        tags:["RPA Candidates","AI/ML Readiness","Automation Scoring","Effort-Value Matrix"]
+      },
+      {
+        icon:"📏", label:"KPI Design", title:"Performance Metrics & Measurement Framework",
+        desc:"Define leading and lagging KPIs for every redesigned process. Establish baselines from AS IS data, set TO BE targets, and design measurement cadence. Link operational metrics to business outcomes: revenue, cost, quality, customer satisfaction, and compliance.",
+        tags:["KPI Framework","Baseline Metrics","Target Setting","OKR Alignment"]
+      }
+    ],
+    deliverables: [
+      "Value Stream Maps (Current & Future)",
+      "Waste Quantification Report",
+      "TO BE Process Maps (BPMN)",
+      "Poka-Yoke Control Register",
+      "Automation Candidate Backlog",
+      "Standard Operating Procedures",
+      "Work Instruction Library",
+      "KPI & Measurement Framework",
+      "Process Redesign Impact Assessment"
+    ],
+    tools: ["Miro / Lucidchart","Lean VSM Templates","MS Visio / draw.io","Confluence / Notion","Power Automate","UIPath Discovery","Process Mining Tools","OKR Platforms"]
+  },
+  {
+    num: "03",
+    tag: "Phase 03 — Strategise",
+    title: "FOCUS",
+    subtitle: "Aligning technology investment to strategic business outcomes",
+    color: "#f59e0b",
+    color2: "#ef4444",
+    gradient: "linear-gradient(90deg,#f59e0b,#ef4444)",
+    glow: "radial-gradient(circle at top right,rgba(245,158,11,0.08),transparent 60%)",
+    dotColor: "#fbbf24",
+    objective: "<strong>Core Objective:</strong> Create a prioritised, business-aligned digital transformation roadmap — sequencing initiatives by value, risk, and dependency — so every technology investment is justified, focused, and positioned for measurable ROI.",
+    kpis: [
+      {val:"100%", lbl:"IT-Business Alignment"},
+      {val:"Top 5", lbl:"Use Cases Prioritised"},
+      {val:"3–5yr", lbl:"Roadmap Horizon"},
+      {val:"ROI", lbl:"For Every Initiative"}
+    ],
+    activities: [
+      {
+        icon:"🎯", label:"Strategic Alignment", title:"Business & IT Strategy Convergence",
+        desc:"Facilitate executive alignment workshops to connect IT roadmap priorities directly to business strategy (growth, efficiency, risk, experience). Map every potential digital initiative to a strategic objective. Eliminate orphan initiatives with no clear business outcome linkage.",
+        tags:["Executive Alignment","Strategy Mapping","IT-Business Fit","OKR Linkage"]
+      },
+      {
+        icon:"🏆", label:"Prioritisation", title:"Digital Initiative Prioritisation Framework",
+        desc:"Score and rank all digital transformation candidates across four dimensions: Business Value (revenue / cost / risk), Implementation Complexity, Strategic Fit, and Time-to-Value. Apply weighted scoring models (MoSCoW, WSJF, ICE) to build a defensible investment priority stack.",
+        tags:["MoSCoW","WSJF","ICE Scoring","Investment Ranking"]
+      },
+      {
+        icon:"🤖", label:"AI Strategy", title:"Intelligent Automation Use Case Design",
+        desc:"Define 5–10 high-priority AI and intelligent automation use cases based on Phase 02 automation candidates. Develop use case briefs: problem statement, data requirements, model type, expected accuracy, integration points, and ROI model. Identify quick wins vs. strategic bets.",
+        tags:["AI Use Cases","Model Selection","Data Requirements","ROI Modelling"]
+      },
+      {
+        icon:"🗺️", label:"Roadmapping", title:"Multi-Horizon Digital Transformation Roadmap",
+        desc:"Build a phased 3–5 year digital transformation roadmap with Horizon 1 (0–12mo quick wins), Horizon 2 (1–3yr core transformation), and Horizon 3 (3–5yr innovation bets). Sequence initiatives to manage dependencies, resource constraints, and change management capacity.",
+        tags:["3-Horizon Model","Sequencing","Dependencies","Change Capacity"]
+      },
+      {
+        icon:"💰", label:"Business Case", title:"Investment Business Case & ROI Framework",
+        desc:"Develop rigorous business cases for top-priority initiatives including NPV, IRR, payback period, and risk-adjusted ROI. Model benefit realisation timelines, cost structures (CapEx/OpEx split), and sensitivity scenarios. Create executive-ready financial narratives.",
+        tags:["Business Case","NPV / IRR","Payback Period","Risk Scenarios"]
+      },
+      {
+        icon:"🛡️", label:"Risk & Governance", title:"Technology Risk & Governance Design",
+        desc:"Identify and rate transformation risks: technology, data, change management, vendor, regulatory, and cybersecurity. Design a governance model — steering committee, programme board, architecture review board — with clear decision rights and escalation paths for the transformation programme.",
+        tags:["Risk Register","Governance Design","Decision Rights","Steering Committee"]
+      }
+    ],
+    deliverables: [
+      "Business–IT Strategy Alignment Map",
+      "Digital Initiative Priority Stack",
+      "AI/Automation Use Case Library",
+      "3–5 Year Transformation Roadmap",
+      "Business Cases (Top 5 Initiatives)",
+      "Technology Investment Register",
+      "Risk & Governance Framework",
+      "Executive Strategy Presentation",
+      "Benefit Realisation Plan"
+    ],
+    tools: ["Strategy Mapping Templates","Miro / MURAL","PowerPoint / Slides","Financial Modelling (Excel)","Project Portfolio Tools","Risk Registers","OKR Platforms","Architecture Tools (ArchiMate)"]
+  },
+  {
+    num: "04",
+    tag: "Phase 04 — Modernise",
+    title: "TRANSFORM",
+    subtitle: "Driving digital implementation from blueprint to live system",
+    color: "#84cc16",
+    color2: "#06b6d4",
+    gradient: "linear-gradient(90deg,#84cc16,#06b6d4)",
+    glow: "radial-gradient(circle at top right,rgba(132,204,22,0.08),transparent 60%)",
+    dotColor: "#a3e635",
+    objective: "<strong>Core Objective:</strong> Translate the strategic roadmap into successful implementation — defining precise requirements, validating through rigorous testing, managing change at scale, and embedding new capabilities with full adoption by end users.",
+    kpis: [
+      {val:"95%+", lbl:"Requirement Traceability"},
+      {val:"100%", lbl:"Test Scenario Coverage"},
+      {val:"≥90%", lbl:"User Adoption Rate"},
+      {val:"On-time", lbl:"Delivery Target"}
+    ],
+    activities: [
+      {
+        icon:"📝", label:"Requirements Engineering", title:"Structured Business Requirements Definition",
+        desc:"Translate optimised TO BE process designs into precise, unambiguous functional and non-functional requirements. Apply structured techniques: user story mapping, use case modelling, business rules cataloguing, and acceptance criteria definition. Maintain full traceability from business need to requirement to test case.",
+        tags:["User Stories","Use Cases","Acceptance Criteria","Traceability Matrix"]
+      },
+      {
+        icon:"🎨", label:"Solution Design", title:"Functional Design & Prototype Validation",
+        desc:"Collaborate with IT architects and solution designers to produce functional specifications, UI/UX wireframes, and system integration designs. Run prototype demonstrations with business stakeholders at every major design milestone. Use iterative feedback loops to prevent late-stage misalignment.",
+        tags:["Functional Spec","Wireframes","Integration Design","Prototype Reviews"]
+      },
+      {
+        icon:"🧪", label:"Test Engineering", title:"Test Scenario Design & UAT Management",
+        desc:"Build a comprehensive test library: unit tests, integration tests, system integration tests, performance tests, and user acceptance tests (UAT). Write test scenarios from business requirements, not just technical specs. Manage UAT execution, defect triage, sign-off process, and go-live readiness assessment.",
+        tags:["UAT Design","Test Scripts","Defect Triage","Go-Live Readiness"]
+      },
+      {
+        icon:"🔧", label:"Implementation Partnership", title:"Vendor & IT Implementation Collaboration",
+        desc:"Act as the business–IT bridge during implementation: clarifying requirements in real-time, resolving scope ambiguity, reviewing configuration decisions, and validating system behaviour against business expectations. Manage vendor accountability to agreed scope, quality, and timeline commitments.",
+        tags:["Vendor Management","Scope Control","Configuration Review","Accountability"]
+      },
+      {
+        icon:"👩‍💼", label:"Change Management", title:"Organisational Change & Adoption Programme",
+        desc:"Design and execute a structured change management programme using ADKAR or Prosci methodology. Assess change impact by role and department. Create targeted communication plans, resistance management strategies, and champion networks. Measure adoption KPIs and intervene proactively.",
+        tags:["ADKAR","Change Impact","Communication Plan","Champion Network"]
+      },
+      {
+        icon:"🎓", label:"Training & Enablement", title:"Role-Based Training & Knowledge Transfer",
+        desc:"Design role-based training programmes for every user group impacted by new systems and processes. Combine instructor-led training, digital learning modules, quick reference guides, and embedded performance support. Run train-the-trainer programmes to build internal capability for self-sufficiency.",
+        tags:["Role-Based Training","eLearning","Train-the-Trainer","Performance Support"]
+      }
+    ],
+    deliverables: [
+      "Business Requirements Document (BRD)",
+      "Functional Design Specification",
+      "Requirements Traceability Matrix",
+      "Test Scenario & Script Library",
+      "UAT Execution Report & Sign-off",
+      "Go-Live Readiness Checklist",
+      "Change Impact Assessment",
+      "Communication & Engagement Plan",
+      "Training Materials & Programmes",
+      "Post-Go-Live Support Runbook"
+    ],
+    tools: ["Jira / Azure DevOps","Confluence","Figma / Axure (Wireframes)","TestRail / Zephyr","MS Project / Smartsheet","Prosci ADKAR Tools","LMS Platforms","ServiceNow / Freshdesk"]
+  }
+];
+
+let currentPhase = 0;
+
+function openModal(index) {
+  currentPhase = index;
+  renderModal(index);
+  document.getElementById('phaseModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('phaseModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('phaseModal')) closeModal();
+}
+
+function navigateModal(dir) {
+  const newIndex = currentPhase + dir;
+  if (newIndex < 0 || newIndex >= phases.length) return;
+  currentPhase = newIndex;
+  renderModal(currentPhase);
+}
+
+function renderModal(index) {
+  const p = phases[index];
+
+  // Accent
+  document.getElementById('modalAccent').style.background = p.gradient;
+  document.getElementById('modalDot').style.background = p.dotColor;
+  document.getElementById('modalDot').style.boxShadow = `0 0 8px ${p.dotColor}`;
+  document.getElementById('modalTag').textContent = p.tag;
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalSubtitle').textContent = p.subtitle;
+
+  // Phase indicator dots
+  const ind = document.getElementById('phaseIndicator');
+  ind.innerHTML = phases.map((ph,i)=>`<div class="mpi-dot${i===index?' active':''}" style="${i===index?'--modal-accent-color:'+ph.color:''}" onclick="navigateModal(${i-currentPhase})"></div>`).join('');
+  // fix: dots use currentPhase context
+  ind.querySelectorAll('.mpi-dot').forEach((dot,i)=>{
+    dot.onclick = () => { currentPhase = i; renderModal(i); };
+    if(i===index) dot.style.background = p.color;
+  });
+
+  // Nav buttons
+  document.getElementById('prevBtn').disabled = index === 0;
+  document.getElementById('nextBtn').disabled = index === phases.length - 1;
+
+  // Build body HTML
+  let html = '';
+
+  // Objective
+  html += `<div class="modal-objective" style="--modal-accent-color:${p.color}">${p.objective}</div>`;
+
+  // KPIs
+  html += `<div class="act-section-title" style="color:${p.color}">Key Success Metrics</div>`;
+  html += `<div class="kpi-row">`;
+  p.kpis.forEach(k=>{
+    html += `<div class="kpi-card"><div class="kpi-val" style="color:${p.color}">${k.val}</div><div class="kpi-lbl">${k.lbl}</div></div>`;
+  });
+  html += `</div>`;
+
+  // Activities
+  html += `<div class="act-section-title" style="color:${p.color}">Core Activities</div>`;
+  html += `<div class="activities-grid">`;
+  p.activities.forEach((act,i)=>{
+    html += `
+      <div class="act-card" style="--act-glow:${p.glow}">
+        <div class="act-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="act-icon">${act.icon}</div>
+        <div class="act-label" style="color:${p.color}">${act.label}</div>
+        <div class="act-title">${act.title}</div>
+        <div class="act-desc">${act.desc}</div>
+        <div class="act-tags">${act.tags.map(t=>`<span class="act-tag">${t}</span>`).join('')}</div>
+      </div>`;
+  });
+  html += `</div>`;
+
+  // Deliverables
+  html += `<div class="act-section-title" style="color:${p.color}">Phase Deliverables</div>`;
+  html += `<div class="deliverables-grid">`;
+  p.deliverables.forEach(d=>{
+    html += `<div class="deliv-item"><div class="deliv-check" style="background:${p.color}">✓</div><div class="deliv-text">${d}</div></div>`;
+  });
+  html += `</div>`;
+
+  // Tools
+  html += `<div class="act-section-title" style="color:${p.color}">Tools & Frameworks</div>`;
+  html += `<div class="tools-list">`;
+  p.tools.forEach(t=>{
+    html += `<div class="tool-chip"><div class="tool-chip-dot" style="background:${p.color}"></div>${t}</div>`;
+  });
+  html += `</div>`;
+
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalBody').scrollTop = 0;
+}
+
+/* ── Readiness bar animation on scroll ── */
+const rpObserver = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.rp-score-fill').forEach(bar=>{
+        setTimeout(()=>{ bar.style.width = bar.dataset.pct+'%'; }, 200);
+      });
+      rpObserver.unobserve(e.target);
+    }
+  });
+},{threshold:0.2});
+document.querySelectorAll('.readiness-grid').forEach(el=>rpObserver.observe(el));
+
+/* ── Modal progress strip ── */
+const phaseColors = ['#7c3aed','#06b6d4','#f59e0b','#84cc16'];
+const phaseGrads  = [
+  'linear-gradient(90deg,#7c3aed,#4f46e5)',
+  'linear-gradient(90deg,#06b6d4,#0d9488)',
+  'linear-gradient(90deg,#f59e0b,#ef4444)',
+  'linear-gradient(90deg,#84cc16,#06b6d4)'
+];
+const phaseGlows = [
+  'rgba(124,58,237,0.5)','rgba(6,182,212,0.5)','rgba(245,158,11,0.5)','rgba(132,204,22,0.5)'
+];
+const phaseLabels = ['Organise','Optimise','Strategise','Modernise'];
+const phaseDepths = [25, 50, 75, 100];
+
+function renderProgressStrip(index){
+  // Journey segments
+  const journey = document.getElementById('modalJourney');
+  const journeyLbls = document.getElementById('modalJourneyLabels');
+  journey.innerHTML = phaseLabels.map((lbl,i)=>{
+    const state = i < index ? 'done' : i === index ? 'active' : '';
+    return `<div class="mj-seg ${state}"><div class="mj-fill" style="background:${phaseGrads[i]}"></div></div>`;
+  }).join('<div style="width:2px;flex-shrink:0;"></div>');
+
+  journeyLbls.innerHTML = phaseLabels.map((lbl,i)=>{
+    const state = i <= index ? (i===index?'active':'done') : '';
+    return `<div class="mj-lbl ${state}">${lbl}</div>`;
+  }).join('');
+
+  // Animate segments
+  setTimeout(()=>{
+    journey.querySelectorAll('.mj-seg.done .mj-fill,.mj-seg.active .mj-fill').forEach((f,i)=>{
+      setTimeout(()=>{ f.style.transform='scaleX(1)'; }, i*120);
+    });
+  }, 80);
+
+  // Main progress bar
+  const fill = document.getElementById('mpsFill');
+  fill.style.background = phaseGrads[index];
+  fill.style.boxShadow = `0 0 12px ${phaseGlows[index]}`;
+  document.getElementById('mpsPercent').style.color = phaseColors[index];
+  document.getElementById('mpsPercent').textContent = phaseDepths[index]+'% of journey';
+
+  setTimeout(()=>{ fill.style.width = phaseDepths[index]+'%'; }, 100);
+}
+
+/* ── Override openModal / navigateModal to wire progress strip ── */
+function openModal(index){
+  currentPhase = index;
+  renderModal(index);
+  const fill = document.getElementById('mpsFill');
+  if(fill){fill.style.transition='none';fill.style.width='0';}
+  setTimeout(()=>{
+    if(fill) fill.style.transition='width 1.2s cubic-bezier(.16,1,.3,1)';
+    renderProgressStrip(index);
+  },60);
+  document.getElementById('phaseModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function navigateModal(dir){
+  const ni = currentPhase + dir;
+  if(ni<0||ni>=phases.length) return;
+  currentPhase = ni;
+  renderModal(currentPhase);
+  const fill = document.getElementById('mpsFill');
+  if(fill){fill.style.transition='none';fill.style.width='0';}
+  setTimeout(()=>{
+    if(fill) fill.style.transition='width 1.2s cubic-bezier(.16,1,.3,1)';
+    renderProgressStrip(currentPhase);
+  },80);
+}
+
+/* Keyboard nav */
+document.addEventListener('keydown', e => {
+  const modal = document.getElementById('phaseModal');
+  const quiz  = document.getElementById('quizOverlay');
+  if(quiz && quiz.classList.contains('open')){
+    if(e.key==='Escape') closeQuiz();
+    return;
+  }
+  if(!modal.classList.contains('open')) return;
+  if(e.key==='Escape') closeModal();
+  if(e.key==='ArrowLeft'&&currentPhase>0) navigateModal(-1);
+  if(e.key==='ArrowRight'&&currentPhase<phases.length-1) navigateModal(1);
+});
+
+/* ══════════════════════════════════════════════════════════
+   QUIZ ENGINE
+══════════════════════════════════════════════════════════ */
+const quizQuestions = [
+  // Dimension: Process Documentation
+  {dim:"Process Documentation",dimColor:"#7c3aed",q:"How well documented are your core business processes?",
+   opts:[
+    {l:"A",m:"Fully documented",s:"Step-by-step SOPs exist, are maintained, and are used by all staff.",score:4},
+    {l:"B",m:"Partially documented",s:"Some key processes written down, but many gaps and exceptions undocumented.",score:2},
+    {l:"C",m:"Informally documented",s:"Documents exist but are outdated, inconsistent, or not actively used.",score:1},
+    {l:"D",m:"Not documented",s:"Processes live in people's heads — no formal documentation exists.",score:0}
+   ]},
+  {dim:"Process Documentation",dimColor:"#7c3aed",q:"When a key staff member leaves, how much process knowledge is lost?",
+   opts:[
+    {l:"A",m:"Nothing significant",s:"All knowledge is captured in documented systems and handover packs.",score:4},
+    {l:"B",m:"Some knowledge",s:"Most critical knowledge documented; occasional gaps discovered post-departure.",score:2},
+    {l:"C",m:"Significant knowledge",s:"Frequently scramble to recover undocumented workflows after departures.",score:1},
+    {l:"D",m:"Critical knowledge",s:"Key person departures regularly cause operational disruption and failures.",score:0}
+   ]},
+  // Dimension: Data Governance
+  {dim:"Data Governance",dimColor:"#06b6d4",q:"How confident are you in the accuracy and consistency of your enterprise data?",
+   opts:[
+    {l:"A",m:"Highly confident",s:"Data is governed, quality-checked, and trusted across all systems.",score:4},
+    {l:"B",m:"Somewhat confident",s:"Most data is reliable, but inconsistencies occasionally cause rework.",score:2},
+    {l:"C",m:"Low confidence",s:"Regular data quality issues lead to decisions made on unreliable data.",score:1},
+    {l:"D",m:"No confidence",s:"Teams maintain shadow spreadsheets because system data cannot be trusted.",score:0}
+   ]},
+  {dim:"Data Governance",dimColor:"#06b6d4",q:"Who owns your enterprise master data (customers, products, vendors)?",
+   opts:[
+    {l:"A",m:"Clearly owned",s:"Named data stewards with defined responsibilities and governance processes.",score:4},
+    {l:"B",m:"Broadly assigned",s:"Teams have general ownership but accountability gaps exist in practice.",score:2},
+    {l:"C",m:"Informally shared",s:"Multiple teams manage overlapping data with no clear authority.",score:1},
+    {l:"D",m:"Nobody owns it",s:"Data ownership is undefined — conflicts resolved ad hoc when issues arise.",score:0}
+   ]},
+  // Dimension: IT–Business Alignment
+  {dim:"IT–Business Alignment",dimColor:"#f59e0b",q:"How closely does your IT roadmap reflect your business strategy?",
+   opts:[
+    {l:"A",m:"Tightly aligned",s:"IT initiatives are directly mapped to strategic objectives with executive sponsorship.",score:4},
+    {l:"B",m:"Mostly aligned",s:"Most IT projects have a business case, but priorities are sometimes mismatched.",score:2},
+    {l:"C",m:"Loosely connected",s:"IT operates largely independently; alignment happens reactively.",score:1},
+    {l:"D",m:"Disconnected",s:"IT and business strategies are built in isolation without regular convergence.",score:0}
+   ]},
+  {dim:"IT–Business Alignment",dimColor:"#f59e0b",q:"How involved are business stakeholders in IT project scoping and requirements?",
+   opts:[
+    {l:"A",m:"Deeply involved",s:"Business leads co-own requirements; joint workshops are standard practice.",score:4},
+    {l:"B",m:"Consulted",s:"Business stakeholders are engaged but often late in the process.",score:2},
+    {l:"C",m:"Occasionally asked",s:"Business input sought only for major decisions; day-to-day is IT-led.",score:1},
+    {l:"D",m:"Not involved",s:"IT designs and builds without structured business input until UAT or launch.",score:0}
+   ]},
+  // Dimension: AI / Automation Readiness
+  {dim:"AI & Automation Readiness",dimColor:"#84cc16",q:"How ready is your data infrastructure to support AI or ML model training?",
+   opts:[
+    {l:"A",m:"Fully ready",s:"Clean, labelled, accessible data pipelines in place; models already running.",score:4},
+    {l:"B",m:"Mostly ready",s:"Good data foundation; some cleanup and structuring needed before AI deployment.",score:2},
+    {l:"C",m:"Partially ready",s:"Data exists but is siloed, dirty, or unstructured — significant prep required.",score:1},
+    {l:"D",m:"Not ready",s:"No data strategy; AI deployment would require starting from scratch.",score:0}
+   ]},
+  {dim:"AI & Automation Readiness",dimColor:"#84cc16",q:"Have you identified specific processes that are candidates for RPA or AI automation?",
+   opts:[
+    {l:"A",m:"Yes, fully mapped",s:"Automation backlog exists with ROI estimates, prioritisation, and sponsors.",score:4},
+    {l:"B",m:"Informally identified",s:"Some obvious candidates discussed but no formal assessment or backlog.",score:2},
+    {l:"C",m:"Vaguely aware",s:"Leadership wants automation but no specific processes have been assessed.",score:1},
+    {l:"D",m:"Not started",s:"Automation is not yet on the agenda in any structured way.",score:0}
+   ]},
+  // Dimension: Value Stream Clarity
+  {dim:"Value Stream Clarity",dimColor:"#f43f5e",q:"Can you trace a customer order (or service request) end-to-end across your organisation?",
+   opts:[
+    {l:"A",m:"Yes, fully traceable",s:"Complete end-to-end visibility with defined handoffs, SLAs, and owners.",score:4},
+    {l:"B",m:"Mostly traceable",s:"Most of the journey mapped; some handoff gaps and grey zones exist.",score:2},
+    {l:"C",m:"Partially traceable",s:"Individual department views exist but cross-functional flow is unclear.",score:1},
+    {l:"D",m:"Not traceable",s:"No single person can describe the complete journey without multiple conversations.",score:0}
+   ]},
+  // Dimension: Change Management
+  {dim:"Change Management Capability",dimColor:"#818cf8",q:"How does your organisation manage large-scale operational or digital change?",
+   opts:[
+    {l:"A",m:"Structured methodology",s:"Defined CM framework (e.g. ADKAR, Kotter), sponsor network, and adoption KPIs.",score:4},
+    {l:"B",m:"Partially structured",s:"Change plans exist for major initiatives but application is inconsistent.",score:2},
+    {l:"C",m:"Communication-only",s:"Change management means sending emails and holding town halls — no structured model.",score:1},
+    {l:"D",m:"No structured approach",s:"Changes are announced and expected to land — resistance handled reactively.",score:0}
+   ]},
+  {dim:"Change Management Capability",dimColor:"#818cf8",q:"What is the typical end-user adoption rate for new systems 6 months post-launch?",
+   opts:[
+    {l:"A",m:"Above 90%",s:"High adoption — users trained, supported, and engaged before and after go-live.",score:4},
+    {l:"B",m:"60–90%",s:"Reasonable adoption with some pockets of resistance and workaround behaviour.",score:2},
+    {l:"C",m:"30–60%",s:"Low adoption — many users avoid the new system and continue old ways.",score:1},
+    {l:"D",m:"Below 30%",s:"Systems frequently abandoned or used minimally — go-live does not equal adoption.",score:0}
+   ]},
+];
+
+const dimNames = ["Process Documentation","Data Governance","IT–Business Alignment","AI & Automation Readiness","Value Stream Clarity","Change Management Capability"];
+const dimColors= ["#7c3aed","#06b6d4","#f59e0b","#84cc16","#f43f5e","#818cf8"];
+const dimGrads = [
+  "linear-gradient(90deg,#7c3aed,#4f46e5)",
+  "linear-gradient(90deg,#06b6d4,#0d9488)",
+  "linear-gradient(90deg,#f59e0b,#ef4444)",
+  "linear-gradient(90deg,#84cc16,#06b6d4)",
+  "linear-gradient(90deg,#f43f5e,#fb923c)",
+  "linear-gradient(90deg,#818cf8,#c084fc)"
+];
+
+let quizStep = 0;
+let quizAnswers = new Array(quizQuestions.length).fill(null);
+
+function openQuiz(){
+  quizStep = 0;
+  quizAnswers = new Array(quizQuestions.length).fill(null);
+  renderQuizStep();
+  document.getElementById('quizOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeQuiz(){
+  document.getElementById('quizOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function handleQuizOverlay(e){
+  if(e.target===document.getElementById('quizOverlay')) closeQuiz();
+}
+
+function renderQuizStep(){
+  const total = quizQuestions.length;
+  const pct = Math.round((quizStep/total)*100);
+
+  // Progress bar
+  document.getElementById('qpLabel').textContent = `Question ${quizStep+1} of ${total}`;
+  document.getElementById('qpPct').textContent = pct+'%';
+  setTimeout(()=>{ document.getElementById('qpFill').style.width = pct+'%'; },50);
+
+  // Dots
+  const dots = document.getElementById('qpDots');
+  dots.innerHTML = quizQuestions.map((_,i)=>{
+    let cls='qp-dot';
+    if(quizAnswers[i]!==null) cls+=' done';
+    if(i===quizStep) cls+=' active';
+    return `<div class="${cls}"></div>`;
+  }).join('');
+
+  // Content
+  const q = quizQuestions[quizStep];
+  const sel = quizAnswers[quizStep];
+  const content = document.getElementById('quizContent');
+  content.innerHTML = `
+    <div class="q-step active">
+      <div class="q-domain"><div class="q-domain-dot" style="background:${q.dimColor}"></div>${q.dim}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-options">
+        ${q.opts.map((o,i)=>`
+          <div class="q-opt${sel===i?' selected':''}" onclick="selectOpt(${i})" data-i="${i}">
+            <div class="q-opt-letter">${o.l}</div>
+            <div class="q-opt-content">
+              <div class="q-opt-main">${o.m}</div>
+              <div class="q-opt-sub">${o.s}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+
+  // Buttons
+  document.getElementById('qBackBtn').disabled = quizStep===0;
+  document.getElementById('qNextBtn').disabled = sel===null;
+  const isLast = quizStep===total-1;
+  document.getElementById('qNextBtn').textContent = isLast ? 'See My Results →' : 'Continue →';
+}
+
+function selectOpt(i){
+  quizAnswers[quizStep] = i;
+  document.querySelectorAll('.q-opt').forEach((el,idx)=>{
+    el.classList.toggle('selected', idx===i);
+  });
+  document.getElementById('qNextBtn').disabled = false;
+}
+
+function quizNext(){
+  if(quizAnswers[quizStep]===null) return;
+  if(quizStep===quizQuestions.length-1){
+    showQuizResults();
+  } else {
+    quizStep++;
+    renderQuizStep();
+  }
+}
+function quizBack(){
+  if(quizStep===0) return;
+  quizStep--;
+  renderQuizStep();
+}
+
+function showQuizResults(){
+  // Hide progress, show results
+  document.getElementById('quizProgress').style.display='none';
+
+  // Calculate scores per dimension
+  // Map each question to its dimension
+  const dimMap = quizQuestions.map(q=>dimNames.indexOf(q.dim));
+  const dimScores  = new Array(dimNames.length).fill(0);
+  const dimMaxes   = new Array(dimNames.length).fill(0);
+  quizQuestions.forEach((q,i)=>{
+    const d = dimMap[i];
+    const ans = quizAnswers[i]??0;
+    dimScores[d]  += q.opts[ans].score;
+    dimMaxes[d]   += 4; // max score per question is 4
+  });
+  const dimPcts = dimScores.map((s,i)=>Math.round((s/dimMaxes[i])*100));
+  const overall  = Math.round(dimPcts.reduce((a,b)=>a+b,0)/dimPcts.length);
+
+  // Recommend starting phase
+  let recPhase;
+  const weakest = dimPcts.indexOf(Math.min(...dimPcts));
+  if(overall<30) recPhase=0;
+  else if(overall<55) recPhase=1;
+  else if(overall<75) recPhase=2;
+  else recPhase=3;
+
+  const recPhaseData = [{icon:"🗺️",name:"Phase 01 — Organise",desc:"Your organisation needs to establish a documented baseline first. Phase 01 will capture your current state across processes, data, and applications before any transformation can be designed."},{icon:"⚡",name:"Phase 02 — Optimise",desc:"You have a basic picture of your current state but processes need redesigning. Phase 02 will eliminate waste, standardise operations, and create the lean foundation your transformation needs."},{icon:"🎯",name:"Phase 03 — Strategise",desc:"Your operational house is in order. Now align technology investment to business strategy, prioritise AI use cases, and build a rigorous transformation roadmap."},{icon:"🚀",name:"Phase 04 — Modernise",desc:"You're strategically positioned and ready to execute. Phase 04 implementation with disciplined requirements, testing, change management, and training will deliver transformational outcomes."}];
+
+  const level = overall>=75?'Advanced Readiness':overall>=50?'Developing Readiness':overall>=25?'Emerging Readiness':'Foundational Stage';
+  const levelSub = overall>=75?'Your enterprise shows strong foundational capabilities across most dimensions. Targeted investment in specific gaps will unlock AI-ready transformation.':overall>=50?'Solid progress in several dimensions. Focused effort on your weakest pillars will dramatically improve transformation success rates.':overall>=25?'Critical gaps exist across multiple dimensions that must be addressed before technology investment will deliver returns.':'Your enterprise transformation journey is at the beginning. The foundation must be built before technology can succeed.';
+
+  // Animate ring
+  const ringOffset = Math.round(283 - (overall/100)*283);
+
+  const content = document.getElementById('quizContent');
+  content.innerHTML = `
+    <div class="quiz-results" id="quizResultsPanel">
+      <div class="qr-header">
+        <div class="qr-score-ring">
+          <svg class="qr-ring-svg" viewBox="0 0 90 90">
+            <circle class="qr-ring-bg" cx="45" cy="45" r="40"/>
+            <circle class="qr-ring-fg" id="ringFg" cx="45" cy="45" r="40" stroke="url(#rGrad)"/>
+            <defs>
+              <linearGradient id="rGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="${dimColors[weakest]}"/>
+                <stop offset="100%" stop-color="#38bdf8"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="qr-score-num">
+            <span style="background:linear-gradient(135deg,${dimColors[weakest]},#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">${overall}%</span>
+            <span class="qr-score-pct">Readiness</span>
+          </div>
+        </div>
+        <div class="qr-title">${level}</div>
+        <div class="qr-tagline">${levelSub}</div>
+      </div>
+
+      <div class="act-section-title" style="color:${dimColors[weakest]}">Readiness by Dimension</div>
+      <div class="qr-dims">
+        ${dimNames.map((d,i)=>`
+          <div class="qr-dim">
+            <div class="qr-dim-lbl">${d}</div>
+            <div class="qr-dim-track">
+              <div class="qr-dim-fill" data-w="${dimPcts[i]}" style="background:${dimGrads[i]}"></div>
+            </div>
+            <div class="qr-dim-pct" style="color:${dimColors[i]}">${dimPcts[i]}%</div>
+          </div>`).join('')}
+      </div>
+
+      <div class="act-section-title" style="color:var(--violet)">Recommended Starting Point</div>
+      <div class="qr-rec">
+        <div class="qr-rec-icon">${recPhaseData[recPhase].icon}</div>
+        <div>
+          <div class="qr-rec-label">Begin Here</div>
+          <div class="qr-rec-title">${recPhaseData[recPhase].name}</div>
+          <div class="qr-rec-desc">${recPhaseData[recPhase].desc}</div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px;text-align:center;">
+        <p style="font-size:0.76rem;color:var(--t3);margin-bottom:14px;">Ready to build your transformation blueprint?</p>
+        <a href="mailto:info@enterpriseiq.in" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:12px 24px;border-radius:100px;text-decoration:none;box-shadow:0 0 24px rgba(124,58,237,0.4);">
+          Talk to EnterpriseIQ →
+        </a>
+        <button onclick="restartQuiz()" style="display:block;margin:12px auto 0;background:none;border:none;cursor:pointer;font-size:0.62rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);text-decoration:underline;text-underline-offset:3px;">Retake Assessment</button>
+      </div>
+    </div>`;
+
+  document.getElementById('quizResultsPanel').style.display='block';
+
+  // Animate ring
+  setTimeout(()=>{
+    const fg = document.getElementById('ringFg');
+    if(fg) fg.style.strokeDashoffset = ringOffset;
+  },200);
+
+  // Animate dim bars
+  setTimeout(()=>{
+    document.querySelectorAll('.qr-dim-fill').forEach((b,i)=>{
+      setTimeout(()=>{ b.style.width = b.dataset.w+'%'; },i*120);
+    });
+  },400);
+
+  // Hide footer next, show only restart
+  document.getElementById('qNextBtn').style.display='none';
+  document.getElementById('qBackBtn').style.display='none';
+}
+
+function restartQuiz(){
+  quizStep=0;
+  quizAnswers=new Array(quizQuestions.length).fill(null);
+  document.getElementById('quizProgress').style.display='';
+  document.getElementById('qNextBtn').style.display='';
+  document.getElementById('qBackBtn').style.display='';
+  renderQuizStep();
+}
 </script>
 </body>
 </html>
